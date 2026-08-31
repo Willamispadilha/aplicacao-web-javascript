@@ -1,7 +1,7 @@
-```javascript
 const form = document.getElementById("formImovel");
 const listaImoveis = document.getElementById("listaImoveis");
 const pesquisa = document.getElementById("pesquisa");
+const filtroTipo = document.getElementById("filtroTipo");
 
 let imoveis = JSON.parse(localStorage.getItem("imoveis")) || [];
 
@@ -13,13 +13,21 @@ function exibirImoveis() {
     listaImoveis.innerHTML = "";
 
     const textoPesquisa = pesquisa.value.trim().toLowerCase();
+    const tipoSelecionado = filtroTipo.value.toLowerCase();
 
     const imoveisFiltrados = imoveis.filter(function(imovel) {
         const tipo = String(imovel.tipo || "").toLowerCase();
         const endereco = String(imovel.endereco || "").toLowerCase();
 
-        return tipo.includes(textoPesquisa) ||
-               endereco.includes(textoPesquisa);
+        const correspondePesquisa =
+            tipo.includes(textoPesquisa) ||
+            endereco.includes(textoPesquisa);
+
+        const correspondeTipo =
+            tipoSelecionado === "" ||
+            tipo === tipoSelecionado;
+
+        return correspondePesquisa && correspondeTipo;
     });
 
     if (imoveisFiltrados.length === 0) {
@@ -110,5 +118,8 @@ pesquisa.addEventListener("input", function() {
     exibirImoveis();
 });
 
+filtroTipo.addEventListener("change", function() {
+    exibirImoveis();
+});
+
 exibirImoveis();
-```
