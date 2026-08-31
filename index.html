@@ -61,7 +61,13 @@
         type="text" 
         id="pesquisa" 
         placeholder="🔎 Pesquisar por endereço..."
-    >
+        <select id="filtroTipo">
+    <option value="">Todos os imóveis</option>
+    <option value="Casa">Casas</option>
+    <option value="Apartamento">Apartamentos</option>
+    <option value="Terreno">Terrenos</option>
+    <option value="Comercial">Comerciais</option>
+</select>
 
     <div id="listaImoveis">
         <p>Nenhum imóvel cadastrado.</p>
