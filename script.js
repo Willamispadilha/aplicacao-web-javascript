@@ -5,6 +5,8 @@ const filtroTipo = document.getElementById("filtroTipo");
 
 let imoveis = JSON.parse(localStorage.getItem("imoveis")) || [];
 
+let indiceEdicao = -1;
+
 function salvarImoveis() {
     localStorage.setItem("imoveis", JSON.stringify(imoveis));
 }
@@ -55,18 +57,32 @@ function exibirImoveis() {
                 minimumFractionDigits: 2
             });
 
-        const botao = document.createElement("button");
-        botao.textContent = "Excluir";
-        botao.classList.add("btn-excluir");
+        const botoes = document.createElement("div");
+        botoes.classList.add("botoes");
 
-        botao.addEventListener("click", function() {
+        const botaoEditar = document.createElement("button");
+        botaoEditar.textContent = "Editar";
+        botaoEditar.classList.add("btn-editar");
+
+        botaoEditar.addEventListener("click", function() {
+            editarImovel(index);
+        });
+
+        const botaoExcluir = document.createElement("button");
+        botaoExcluir.textContent = "Excluir";
+        botaoExcluir.classList.add("btn-excluir");
+
+        botaoExcluir.addEventListener("click", function() {
             excluirImovel(index);
         });
+
+        botoes.appendChild(botaoEditar);
+        botoes.appendChild(botaoExcluir);
 
         card.appendChild(titulo);
         card.appendChild(endereco);
         card.appendChild(preco);
-        card.appendChild(botao);
+        card.appendChild(botoes);
 
         listaImoveis.appendChild(card);
     });
@@ -84,22 +100,49 @@ form.addEventListener("submit", function(event) {
         return;
     }
 
-    const novoImovel = {
+    const imovelAtualizado = {
         tipo: tipo,
         endereco: endereco,
         preco: preco
     };
 
-    imoveis.push(novoImovel);
+    if (indiceEdicao === -1) {
+        imoveis.push(imovelAtualizado);
+        alert("Imóvel cadastrado com sucesso!");
+    } else {
+        imoveis[indiceEdicao] = imovelAtualizado;
+        indiceEdicao = -1;
+
+        form.querySelector("button[type='submit']").textContent =
+            "Cadastrar imóvel";
+
+        alert("Imóvel atualizado com sucesso!");
+    }
 
     salvarImoveis();
 
     form.reset();
 
     exibirImoveis();
-
-    alert("Imóvel cadastrado com sucesso!");
 });
+
+function editarImovel(index) {
+    const imovel = imoveis[index];
+
+    document.getElementById("tipo").value = imovel.tipo;
+    document.getElementById("endereco").value = imovel.endereco;
+    document.getElementById("preco").value = imovel.preco;
+
+    indiceEdicao = index;
+
+    form.querySelector("button[type='submit']").textContent =
+        "Salvar alteração";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
 
 function excluirImovel(index) {
     const confirmar = confirm(
@@ -111,6 +154,8 @@ function excluirImovel(index) {
 
         salvarImoveis();
         exibirImoveis();
+
+        alert("Imóvel excluído com sucesso!");
     }
 }
 
