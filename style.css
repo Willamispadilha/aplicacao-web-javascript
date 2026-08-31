@@ -1,343 +1,625 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
-    color: #333;
-    min-height: 100vh;
+font-family: Arial, sans-serif;
+background: #f4f6f8;
+color: #333;
+min-height: 100vh;
 }
-
 
 /* CABEÇALHO */
 
 header {
-    background: #1f4e79;
-    color: white;
-    text-align: center;
-    padding: 30px 20px;
+background: #1f4e79;
+color: white;
+text-align: center;
+padding: 30px 20px;
 }
 
 header h1 {
-    margin-bottom: 10px;
+margin-bottom: 10px;
 }
-
 
 /* CONTEÚDO PRINCIPAL */
 
 main {
-    width: 90%;
-    max-width: 1000px;
-    margin: 30px auto;
+width: 90%;
+max-width: 1000px;
+margin: 30px auto;
 
-    display: grid;
+```
+display: grid;
 
-    grid-template-columns: 1fr 1.5fr;
+grid-template-columns: 1fr 1.5fr;
 
-    gap: 25px;
+gap: 25px;
+```
+
 }
-
 
 /* SEÇÕES */
 
 section {
-    background: white;
+background: white;
 
-    padding: 25px;
+```
+padding: 25px;
 
-    border-radius: 10px;
+border-radius: 10px;
 
-    box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.08);
+box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.08);
+```
+
 }
-
 
 /* TÍTULOS */
 
 h2 {
-    margin-bottom: 20px;
+margin-bottom: 20px;
 
-    color: #1f4e79;
+```
+color: #1f4e79;
+```
+
 }
-
 
 /* FORMULÁRIO */
 
 form {
-    display: flex;
-    flex-direction: column;
+display: flex;
+flex-direction: column;
 }
-
 
 label {
-    margin-bottom: 6px;
+margin-bottom: 6px;
 
-    font-weight: bold;
+```
+font-weight: bold;
+```
+
 }
-
 
 input,
 select,
 textarea {
 
-    padding: 12px;
+```
+padding: 12px;
 
-    margin-bottom: 15px;
+margin-bottom: 15px;
 
-    border: 1px solid #ccc;
+border: 1px solid #ccc;
 
-    border-radius: 6px;
+border-radius: 6px;
 
-    font-size: 15px;
+font-size: 15px;
 
-    font-family: Arial, sans-serif;
+font-family: Arial, sans-serif;
+```
+
 }
-
 
 textarea {
-    resize: vertical;
+resize: vertical;
 
-    min-height: 100px;
+```
+min-height: 100px;
+```
+
 }
-
 
 input:focus,
 select:focus,
 textarea:focus {
 
-    outline: none;
+```
+outline: none;
 
-    border-color: #1f4e79;
+border-color: #1f4e79;
 
-    box-shadow:
-        0 0 0 2px rgba(31, 78, 121, 0.1);
+box-shadow:
+    0 0 0 2px rgba(31, 78, 121, 0.1);
+```
+
 }
-
 
 /* BOTÃO PRINCIPAL */
 
 button {
 
-    padding: 12px;
+```
+padding: 12px;
 
-    border: none;
+border: none;
 
-    border-radius: 6px;
+border-radius: 6px;
 
-    background: #1f4e79;
+background: #1f4e79;
 
-    color: white;
+color: white;
 
-    font-size: 16px;
+font-size: 16px;
 
-    cursor: pointer;
+cursor: pointer;
+```
+
 }
-
 
 button:hover {
 
-    opacity: 0.9;
+```
+opacity: 0.9;
+```
+
 }
 
+/* FOTOS DO FORMULÁRIO */
+
+.ajuda-fotos {
+
+```
+color: #666;
+
+font-size: 13px;
+
+margin-top: -10px;
+
+margin-bottom: 12px;
+```
+
+}
+
+.preview-fotos {
+
+```
+display: grid;
+
+grid-template-columns:
+    repeat(auto-fill, minmax(90px, 1fr));
+
+gap: 8px;
+
+margin-bottom: 15px;
+```
+
+}
+
+.preview-foto-item {
+
+```
+position: relative;
+
+height: 90px;
+
+border-radius: 6px;
+
+overflow: hidden;
+
+border: 1px solid #ddd;
+```
+
+}
+
+.preview-foto-item img {
+
+```
+width: 100%;
+
+height: 100%;
+
+object-fit: cover;
+```
+
+}
 
 /* FILTROS */
 
 .filtros {
 
-    display: flex;
+```
+display: flex;
 
-    gap: 5px;
+gap: 5px;
 
-    margin-bottom: 15px;
+margin-bottom: 15px;
+```
+
 }
-
 
 .filtros input {
 
-    flex: 1;
+```
+flex: 1;
 
-    margin-bottom: 0;
+margin-bottom: 0;
+```
+
 }
-
 
 .filtros select {
 
-    width: 160px;
+```
+width: 160px;
 
-    margin-bottom: 0;
+margin-bottom: 0;
+```
+
 }
-
 
 /* CARD DO IMÓVEL */
 
 .imovel {
 
-    border: 1px solid #ddd;
+```
+border: 1px solid #ddd;
 
-    border-radius: 8px;
+border-radius: 8px;
 
-    padding: 15px;
+padding: 15px;
 
-    margin-bottom: 15px;
+margin-bottom: 15px;
 
-    background: #fff;
+background: #fff;
+```
+
 }
-
 
 .imovel h3 {
 
-    color: #1f4e79;
+```
+color: #1f4e79;
 
-    margin-bottom: 12px;
+margin-bottom: 12px;
 
-    font-size: 20px;
+font-size: 20px;
+```
+
 }
-
 
 .imovel p {
 
-    margin-bottom: 7px;
+```
+margin-bottom: 7px;
 
-    line-height: 1.4;
+line-height: 1.4;
+```
+
 }
-
 
 .imovel .descricao {
 
-    margin-top: 12px;
+```
+margin-top: 12px;
 
-    padding-top: 10px;
+padding-top: 10px;
 
-    border-top: 1px solid #eee;
+border-top: 1px solid #eee;
+```
+
 }
-
 
 .imovel .descricao strong {
 
-    display: block;
+```
+display: block;
 
-    margin-bottom: 5px;
+margin-bottom: 5px;
+```
+
 }
 
+/* GALERIA DO IMÓVEL */
+
+.galeria-imovel {
+
+```
+display: grid;
+
+grid-template-columns:
+    repeat(auto-fill, minmax(110px, 1fr));
+
+gap: 8px;
+
+margin: 15px 0;
+```
+
+}
+
+.foto-imovel {
+
+```
+position: relative;
+
+height: 110px;
+
+border-radius: 7px;
+
+overflow: hidden;
+
+border: 1px solid #ddd;
+
+background: #f4f6f8;
+```
+
+}
+
+.foto-imovel img {
+
+```
+width: 100%;
+
+height: 100%;
+
+object-fit: cover;
+
+cursor: pointer;
+
+transition: transform 0.2s;
+```
+
+}
+
+.foto-imovel img:hover {
+
+```
+transform: scale(1.05);
+```
+
+}
+
+/* BOTÃO EXCLUIR FOTO */
+
+.btn-excluir-foto {
+
+```
+position: absolute;
+
+top: 5px;
+
+right: 5px;
+
+width: 28px;
+
+height: 28px;
+
+padding: 0;
+
+border-radius: 50%;
+
+background: #c0392b;
+
+color: white;
+
+font-size: 14px;
+
+z-index: 2;
+```
+
+}
 
 /* INFORMAÇÕES DO IMÓVEL */
 
 .info-imovel {
 
-    display: flex;
+```
+display: flex;
 
-    flex-wrap: wrap;
+flex-wrap: wrap;
 
-    gap: 8px;
+gap: 8px;
 
-    margin: 12px 0;
+margin: 12px 0;
+```
+
 }
-
 
 .info-item {
 
-    background: #f4f6f8;
+```
+background: #f4f6f8;
 
-    padding: 7px 10px;
+padding: 7px 10px;
 
-    border-radius: 5px;
+border-radius: 5px;
 
-    font-size: 14px;
+font-size: 14px;
+```
+
 }
-
 
 /* BOTÕES */
 
 .botoes {
 
-    display: flex;
+```
+display: flex;
 
-    gap: 5px;
+gap: 5px;
 
-    margin-top: 12px;
+margin-top: 12px;
+```
+
 }
-
 
 .botoes button {
 
-    width: auto;
+```
+width: auto;
 
-    padding: 10px 14px;
+padding: 10px 14px;
 
-    font-size: 14px;
+font-size: 14px;
+```
+
 }
-
 
 /* BOTÃO EDITAR */
 
 .btn-editar {
 
-    background: #1f4e79;
-}
+```
+background: #1f4e79;
+```
 
+}
 
 /* BOTÃO EXCLUIR */
 
 .btn-excluir {
 
-    background: #c0392b;
+```
+background: #c0392b;
+```
+
 }
 
+/* MODAL DA FOTO */
+
+.modal-foto {
+
+```
+display: none;
+
+position: fixed;
+
+z-index: 9999;
+
+left: 0;
+
+top: 0;
+
+width: 100%;
+
+height: 100%;
+
+background: rgba(0, 0, 0, 0.85);
+
+align-items: center;
+
+justify-content: center;
+
+padding: 30px;
+```
+
+}
+
+.modal-foto.ativo {
+
+```
+display: flex;
+```
+
+}
+
+.modal-foto img {
+
+```
+max-width: 95%;
+
+max-height: 90vh;
+
+object-fit: contain;
+
+border-radius: 8px;
+```
+
+}
+
+.fechar-modal {
+
+```
+position: absolute;
+
+top: 20px;
+
+right: 25px;
+
+width: 45px;
+
+height: 45px;
+
+padding: 0;
+
+border-radius: 50%;
+
+background: #c0392b;
+
+color: white;
+
+font-size: 22px;
+
+z-index: 10000;
+```
+
+}
 
 /* RODAPÉ */
 
 footer {
 
-    text-align: center;
+```
+text-align: center;
 
-    padding: 25px;
+padding: 25px;
 
-    color: #666;
+color: #666;
 
-    font-size: 14px;
+font-size: 14px;
+```
+
 }
-
 
 /* CELULAR */
 
 @media (max-width: 700px) {
 
-    main {
+```
+main {
 
-        grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
 
-        width: 94%;
+    width: 94%;
 
-        margin: 20px auto;
-    }
-
-
-    section {
-
-        padding: 20px;
-    }
+    margin: 20px auto;
+}
 
 
-    .filtros {
+section {
 
-        flex-direction: column;
-    }
-
-
-    .filtros select {
-
-        width: 100%;
-    }
+    padding: 20px;
+}
 
 
-    .info-imovel {
+.filtros {
 
-        flex-direction: column;
+    flex-direction: column;
+}
 
-        gap: 5px;
-    }
+
+.filtros select {
+
+    width: 100%;
+}
+
+
+.info-imovel {
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.galeria-imovel {
+
+    grid-template-columns:
+        repeat(2, 1fr);
+}
+```
 
 }
