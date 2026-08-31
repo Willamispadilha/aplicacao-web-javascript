@@ -956,129 +956,111 @@ if (confirmar) {
 
 function abrirFoto(foto) {
 
-```
-fotoAmpliada.src = foto;
+    // Verifica se existe uma foto válida
+    if (
+        !foto ||
+        typeof foto !== "string" ||
+        !foto.startsWith("data:image/")
+    ) {
 
-modalFoto.classList.add("ativo");
-```
+        alert("Esta foto não pode ser exibida.");
+
+        return;
+    }
+
+
+    fotoAmpliada.src = foto;
+
+    fotoAmpliada.style.display = "block";
+
+    modalFoto.classList.add("ativo");
 
 }
+
 
 // =====================================================
 // FECHAR FOTO
 // =====================================================
 
-fecharModal.addEventListener(
-"click",
-function() {
+function fecharFoto() {
 
-```
     modalFoto.classList.remove("ativo");
 
     fotoAmpliada.src = "";
 
-}
-```
+    fotoAmpliada.style.display = "none";
 
+}
+
+
+// =====================================================
+// BOTÃO X
+// =====================================================
+
+fecharModal.addEventListener(
+    "click",
+    function(event) {
+
+        event.preventDefault();
+
+        event.stopPropagation();
+
+        fecharFoto();
+
+    }
 );
 
-// Fechar clicando no fundo
+
+// =====================================================
+// CLICAR NO FUNDO PARA FECHAR
+// =====================================================
+
 modalFoto.addEventListener(
-"click",
-function(event) {
+    "click",
+    function(event) {
 
-```
-    if (event.target === modalFoto) {
+        if (
+            event.target === modalFoto
+        ) {
 
-        modalFoto.classList.remove(
-            "ativo"
-        );
+            fecharFoto();
 
-        fotoAmpliada.src = "";
+        }
 
     }
-
-}
-```
-
 );
 
-// Fechar com ESC
+
+// =====================================================
+// TECLA ESC PARA FECHAR
+// =====================================================
+
 document.addEventListener(
-"keydown",
-function(event) {
+    "keydown",
+    function(event) {
 
-```
-    if (
-        event.key === "Escape" &&
-        modalFoto.classList.contains("ativo")
-    ) {
+        if (
+            event.key === "Escape" &&
+            modalFoto.classList.contains("ativo")
+        ) {
 
-        modalFoto.classList.remove(
-            "ativo"
-        );
+            fecharFoto();
 
-        fotoAmpliada.src = "";
+        }
 
     }
-
-}
-```
-
 );
 
+
 // =====================================================
-// PESQUISA
+// ERRO AO CARREGAR FOTO
 // =====================================================
 
-pesquisa.addEventListener(
-"input",
-function() {
+fotoAmpliada.addEventListener(
+    "error",
+    function() {
 
-```
-    exibirImoveis();
+        fecharFoto();
 
-}
-```
-
+    }
 );
-
-// =====================================================
-// FILTRO POR TIPO
-// =====================================================
-
-filtroTipo.addEventListener(
-"change",
-function() {
-
-```
-    exibirImoveis();
-
-}
-```
-
-);
-
-// =====================================================
-// PROTEÇÃO CONTRA HTML INDESEJADO
-// =====================================================
-
-function escaparHTML(texto) {
-
-```
-const div =
-    document.createElement("div");
-
-div.textContent =
-    texto;
-
-return div.innerHTML;
-```
-
-}
-
-// =====================================================
-// INICIAR
-// =====================================================
-
-exibirImoveis();
