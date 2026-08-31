@@ -1,3 +1,4 @@
+```javascript
 const form = document.getElementById("formImovel");
 const listaImoveis = document.getElementById("listaImoveis");
 const pesquisa = document.getElementById("pesquisa");
@@ -11,10 +12,14 @@ function salvarImoveis() {
 function exibirImoveis() {
     listaImoveis.innerHTML = "";
 
-    const textoPesquisa = pesquisa.value.toLowerCase();
+    const textoPesquisa = pesquisa.value.trim().toLowerCase();
 
     const imoveisFiltrados = imoveis.filter(function(imovel) {
-        return imovel.endereco.toLowerCase().includes(textoPesquisa);
+        const tipo = String(imovel.tipo || "").toLowerCase();
+        const endereco = String(imovel.endereco || "").toLowerCase();
+
+        return tipo.includes(textoPesquisa) ||
+               endereco.includes(textoPesquisa);
     });
 
     if (imoveisFiltrados.length === 0) {
@@ -32,10 +37,12 @@ function exibirImoveis() {
         titulo.textContent = imovel.tipo;
 
         const endereco = document.createElement("p");
-        endereco.innerHTML = "<strong>Endereço:</strong> " + imovel.endereco;
+        endereco.innerHTML =
+            "<strong>Endereço:</strong> " + imovel.endereco;
 
         const preco = document.createElement("p");
-        preco.innerHTML = "<strong>Preço:</strong> R$ " +
+        preco.innerHTML =
+            "<strong>Preço:</strong> R$ " +
             Number(imovel.preco).toLocaleString("pt-BR", {
                 minimumFractionDigits: 2
             });
@@ -61,8 +68,13 @@ form.addEventListener("submit", function(event) {
     event.preventDefault();
 
     const tipo = document.getElementById("tipo").value;
-    const endereco = document.getElementById("endereco").value;
+    const endereco = document.getElementById("endereco").value.trim();
     const preco = document.getElementById("preco").value;
+
+    if (!tipo || !endereco || !preco) {
+        alert("Preencha todos os campos.");
+        return;
+    }
 
     const novoImovel = {
         tipo: tipo,
@@ -73,15 +85,18 @@ form.addEventListener("submit", function(event) {
     imoveis.push(novoImovel);
 
     salvarImoveis();
-    exibirImoveis();
 
     form.reset();
+
+    exibirImoveis();
 
     alert("Imóvel cadastrado com sucesso!");
 });
 
 function excluirImovel(index) {
-    const confirmar = confirm("Deseja realmente excluir este imóvel?");
+    const confirmar = confirm(
+        "Deseja realmente excluir este imóvel?"
+    );
 
     if (confirmar) {
         imoveis.splice(index, 1);
@@ -96,3 +111,4 @@ pesquisa.addEventListener("input", function() {
 });
 
 exibirImoveis();
+```
