@@ -1,4 +1,3 @@
-```javascript
 const form = document.getElementById("formImovel");
 const listaImoveis = document.getElementById("listaImoveis");
 
@@ -16,20 +15,34 @@ function exibirImoveis() {
         return;
     }
 
-    imoveis.forEach((imovel, index) => {
+    imoveis.forEach(function(imovel, index) {
         const card = document.createElement("div");
         card.classList.add("imovel");
 
-        card.innerHTML = `
-            <h3>${imovel.tipo}</h3>
-            <p><strong>Endereço:</strong> ${imovel.endereco}</p>
-            <p><strong>Preço:</strong> R$ ${Number(imovel.preco).toLocaleString("pt-BR", {
+        const titulo = document.createElement("h3");
+        titulo.textContent = imovel.tipo;
+
+        const endereco = document.createElement("p");
+        endereco.innerHTML = "<strong>Endereço:</strong> " + imovel.endereco;
+
+        const preco = document.createElement("p");
+        preco.innerHTML = "<strong>Preço:</strong> R$ " +
+            Number(imovel.preco).toLocaleString("pt-BR", {
                 minimumFractionDigits: 2
-            })}</p>
-            <button class="btn-excluir" onclick="excluirImovel(${index})">
-                Excluir
-            </button>
-        `;
+            });
+
+        const botao = document.createElement("button");
+        botao.textContent = "Excluir";
+        botao.classList.add("btn-excluir");
+
+        botao.addEventListener("click", function() {
+            excluirImovel(index);
+        });
+
+        card.appendChild(titulo);
+        card.appendChild(endereco);
+        card.appendChild(preco);
+        card.appendChild(botao);
 
         listaImoveis.appendChild(card);
     });
@@ -63,11 +76,9 @@ function excluirImovel(index) {
 
     if (confirmar) {
         imoveis.splice(index, 1);
-
         salvarImoveis();
         exibirImoveis();
     }
 }
 
 exibirImoveis();
-```
