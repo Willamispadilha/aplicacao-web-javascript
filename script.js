@@ -1,5 +1,6 @@
 const form = document.getElementById("formImovel");
 const listaImoveis = document.getElementById("listaImoveis");
+const pesquisa = document.getElementById("pesquisa");
 
 let imoveis = JSON.parse(localStorage.getItem("imoveis")) || [];
 
@@ -10,12 +11,20 @@ function salvarImoveis() {
 function exibirImoveis() {
     listaImoveis.innerHTML = "";
 
-    if (imoveis.length === 0) {
-        listaImoveis.innerHTML = "<p>Nenhum imóvel cadastrado.</p>";
+    const textoPesquisa = pesquisa.value.toLowerCase();
+
+    const imoveisFiltrados = imoveis.filter(function(imovel) {
+        return imovel.endereco.toLowerCase().includes(textoPesquisa);
+    });
+
+    if (imoveisFiltrados.length === 0) {
+        listaImoveis.innerHTML = "<p>Nenhum imóvel encontrado.</p>";
         return;
     }
 
-    imoveis.forEach(function(imovel, index) {
+    imoveisFiltrados.forEach(function(imovel) {
+        const index = imoveis.indexOf(imovel);
+
         const card = document.createElement("div");
         card.classList.add("imovel");
 
@@ -76,9 +85,14 @@ function excluirImovel(index) {
 
     if (confirmar) {
         imoveis.splice(index, 1);
+
         salvarImoveis();
         exibirImoveis();
     }
 }
+
+pesquisa.addEventListener("input", function() {
+    exibirImoveis();
+});
 
 exibirImoveis();
