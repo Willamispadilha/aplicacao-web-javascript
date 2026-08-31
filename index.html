@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -9,179 +10,210 @@
 
 <body>
 
-    <header>
-        <h1>🏠 Imóveis Fácil</h1>
-        <p>Cadastro e gerenciamento de imóveis</p>
-    </header>
+```
+<header>
+    <h1>🏠 Imóveis Fácil</h1>
+    <p>Cadastro e gerenciamento de imóveis</p>
+</header>
 
-    <main>
+<main>
 
-        <!-- FORMULÁRIO -->
-        <section class="formulario">
+    <!-- FORMULÁRIO -->
+    <section class="formulario">
 
-            <h2>Cadastrar imóvel</h2>
+        <h2>Cadastrar imóvel</h2>
 
-            <form id="formImovel">
+        <form id="formImovel">
 
-                <label for="tipo">Tipo de imóvel</label>
+            <label for="tipo">Tipo de imóvel</label>
 
-                <select id="tipo" required>
-                    <option value="">Selecione</option>
-                    <option value="Casa">Casa</option>
-                    <option value="Apartamento">Apartamento</option>
-                    <option value="Terreno">Terreno</option>
-                    <option value="Comercial">Comercial</option>
-                </select>
-
-
-                <label for="endereco">Endereço</label>
-
-                <input
-                    type="text"
-                    id="endereco"
-                    placeholder="Digite o endereço"
-                    required
-                >
+            <select id="tipo" required>
+                <option value="">Selecione</option>
+                <option value="Casa">Casa</option>
+                <option value="Apartamento">Apartamento</option>
+                <option value="Terreno">Terreno</option>
+                <option value="Comercial">Comercial</option>
+            </select>
 
 
-                <label for="preco">Preço</label>
+            <label for="endereco">Endereço</label>
 
-                <input
-                    type="number"
-                    id="preco"
-                    placeholder="Digite o preço"
-                    min="0"
-                    step="0.01"
-                    required
-                >
+            <input
+                type="text"
+                id="endereco"
+                placeholder="Digite o endereço"
+                required
+            >
 
 
-                <label for="quartos">Quartos</label>
+            <label for="preco">Preço</label>
 
-                <input
-                    type="number"
-                    id="quartos"
-                    placeholder="Quantidade de quartos"
-                    min="0"
-                >
-
-
-                <label for="banheiros">Banheiros</label>
-
-                <input
-                    type="number"
-                    id="banheiros"
-                    placeholder="Quantidade de banheiros"
-                    min="0"
-                >
+            <input
+                type="number"
+                id="preco"
+                placeholder="Digite o preço"
+                min="0"
+                step="0.01"
+                required
+            >
 
 
-                <label for="vagas">Vagas de garagem</label>
+            <label for="quartos">Quartos</label>
 
-                <input
-                    type="number"
-                    id="vagas"
-                    placeholder="Quantidade de vagas"
-                    min="0"
-                >
-
-
-                <label for="area">Área (m²)</label>
-
-                <input
-                    type="number"
-                    id="area"
-                    placeholder="Ex.: 150"
-                    min="0"
-                    step="0.01"
-                >
+            <input
+                type="number"
+                id="quartos"
+                placeholder="Quantidade de quartos"
+                min="0"
+            >
 
 
-                <label for="descricao">Descrição</label>
+            <label for="banheiros">Banheiros</label>
 
-                <textarea
-                    id="descricao"
-                    placeholder="Digite uma descrição do imóvel..."
-                    rows="5"
-                ></textarea>
-
-
-                <button type="submit">
-                    Cadastrar imóvel
-                </button>
-
-            </form>
-
-        </section>
+            <input
+                type="number"
+                id="banheiros"
+                placeholder="Quantidade de banheiros"
+                min="0"
+            >
 
 
-        <!-- LISTA DE IMÓVEIS -->
-        <section class="lista">
+            <label for="vagas">Vagas de garagem</label>
 
-            <h2>Imóveis cadastrados</h2>
-
-
-            <div class="filtros">
-
-                <input
-                    type="text"
-                    id="pesquisa"
-                    placeholder="🔎 Pesquisar por endereço..."
-                >
+            <input
+                type="number"
+                id="vagas"
+                placeholder="Quantidade de vagas"
+                min="0"
+            >
 
 
-                <select id="filtroTipo">
+            <label for="area">Área (m²)</label>
 
-                    <option value="">
-                        Todos os imóveis
-                    </option>
-
-                    <option value="Casa">
-                        Casas
-                    </option>
-
-                    <option value="Apartamento">
-                        Apartamentos
-                    </option>
-
-                    <option value="Terreno">
-                        Terrenos
-                    </option>
-
-                    <option value="Comercial">
-                        Comerciais
-                    </option>
-
-                </select>
-
-            </div>
+            <input
+                type="number"
+                id="area"
+                placeholder="Ex.: 150"
+                min="0"
+                step="0.01"
+            >
 
 
-            <div id="listaImoveis">
+            <label for="descricao">Descrição</label>
 
-                <p>Nenhum imóvel cadastrado.</p>
-
-            </div>
-
-        </section>
-
-    </main>
+            <textarea
+                id="descricao"
+                placeholder="Digite uma descrição do imóvel..."
+                rows="5"
+            ></textarea>
 
 
-    <footer>
+            <!-- FOTOS -->
+            <label for="fotos">📷 Fotos do imóvel</label>
 
-        <p>
-            Projeto acadêmico - Análise e Desenvolvimento de Sistemas
-        </p>
+            <input
+                type="file"
+                id="fotos"
+                accept="image/jpeg,image/png,image/webp"
+                multiple
+            >
 
-        <p>
-            Desenvolvido por Willamis Padilha Ferreira
-        </p>
+            <small class="ajuda-fotos">
+                Você pode selecionar várias fotos de uma vez.
+            </small>
 
-    </footer>
+            <div id="previewFotos" class="preview-fotos"></div>
 
 
-    <script src="script.js"></script>
+            <button type="submit">
+                Cadastrar imóvel
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- LISTA DE IMÓVEIS -->
+    <section class="lista">
+
+        <h2>Imóveis cadastrados</h2>
+
+
+        <div class="filtros">
+
+            <input
+                type="text"
+                id="pesquisa"
+                placeholder="🔎 Pesquisar por endereço..."
+            >
+
+
+            <select id="filtroTipo">
+
+                <option value="">
+                    Todos os imóveis
+                </option>
+
+                <option value="Casa">
+                    Casas
+                </option>
+
+                <option value="Apartamento">
+                    Apartamentos
+                </option>
+
+                <option value="Terreno">
+                    Terrenos
+                </option>
+
+                <option value="Comercial">
+                    Comerciais
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div id="listaImoveis">
+
+            <p>Nenhum imóvel cadastrado.</p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- MODAL DA FOTO -->
+<div id="modalFoto" class="modal-foto">
+
+    <button id="fecharModal" class="fechar-modal">
+        ✕
+    </button>
+
+    <img id="fotoAmpliada" src="" alt="Foto ampliada">
+
+</div>
+
+
+<footer>
+
+    <p>
+        Projeto acadêmico - Análise e Desenvolvimento de Sistemas
+    </p>
+
+    <p>
+        Desenvolvido por Willamis Padilha Ferreira
+    </p>
+
+</footer>
+
+
+<script src="script.js"></script>
+```
 
 </body>
 </html>
