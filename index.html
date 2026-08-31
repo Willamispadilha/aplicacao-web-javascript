@@ -16,7 +16,9 @@
 
     <main>
 
+        <!-- FORMULÁRIO -->
         <section class="formulario">
+
             <h2>Cadastrar imóvel</h2>
 
             <form id="formImovel">
@@ -31,6 +33,7 @@
                     <option value="Comercial">Comercial</option>
                 </select>
 
+
                 <label for="endereco">Endereço</label>
 
                 <input
@@ -39,6 +42,7 @@
                     placeholder="Digite o endereço"
                     required
                 >
+
 
                 <label for="preco">Preço</label>
 
@@ -51,32 +55,112 @@
                     required
                 >
 
-                <button type="submit">Cadastrar imóvel</button>
+
+                <label for="quartos">Quartos</label>
+
+                <input
+                    type="number"
+                    id="quartos"
+                    placeholder="Quantidade de quartos"
+                    min="0"
+                >
+
+
+                <label for="banheiros">Banheiros</label>
+
+                <input
+                    type="number"
+                    id="banheiros"
+                    placeholder="Quantidade de banheiros"
+                    min="0"
+                >
+
+
+                <label for="vagas">Vagas de garagem</label>
+
+                <input
+                    type="number"
+                    id="vagas"
+                    placeholder="Quantidade de vagas"
+                    min="0"
+                >
+
+
+                <label for="area">Área (m²)</label>
+
+                <input
+                    type="number"
+                    id="area"
+                    placeholder="Ex.: 150"
+                    min="0"
+                    step="0.01"
+                >
+
+
+                <label for="descricao">Descrição</label>
+
+                <textarea
+                    id="descricao"
+                    placeholder="Digite uma descrição do imóvel..."
+                    rows="5"
+                ></textarea>
+
+
+                <button type="submit">
+                    Cadastrar imóvel
+                </button>
 
             </form>
+
         </section>
 
 
+        <!-- LISTA DE IMÓVEIS -->
         <section class="lista">
 
             <h2>Imóveis cadastrados</h2>
 
-            <input
-                type="text"
-                id="pesquisa"
-                placeholder="🔎 Pesquisar por endereço..."
-            >
 
-            <select id="filtroTipo">
-                <option value="">Todos os imóveis</option>
-                <option value="Casa">Casas</option>
-                <option value="Apartamento">Apartamentos</option>
-                <option value="Terreno">Terrenos</option>
-                <option value="Comercial">Comerciais</option>
-            </select>
+            <div class="filtros">
+
+                <input
+                    type="text"
+                    id="pesquisa"
+                    placeholder="🔎 Pesquisar por endereço..."
+                >
+
+
+                <select id="filtroTipo">
+
+                    <option value="">
+                        Todos os imóveis
+                    </option>
+
+                    <option value="Casa">
+                        Casas
+                    </option>
+
+                    <option value="Apartamento">
+                        Apartamentos
+                    </option>
+
+                    <option value="Terreno">
+                        Terrenos
+                    </option>
+
+                    <option value="Comercial">
+                        Comerciais
+                    </option>
+
+                </select>
+
+            </div>
+
 
             <div id="listaImoveis">
+
                 <p>Nenhum imóvel cadastrado.</p>
+
             </div>
 
         </section>
@@ -85,8 +169,15 @@
 
 
     <footer>
-        <p>Projeto acadêmico - Análise e Desenvolvimento de Sistemas</p>
-        <p>Desenvolvido por Willamis Padilha Ferreira</p>
+
+        <p>
+            Projeto acadêmico - Análise e Desenvolvimento de Sistemas
+        </p>
+
+        <p>
+            Desenvolvido por Willamis Padilha Ferreira
+        </p>
+
     </footer>
 
 
