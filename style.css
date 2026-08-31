@@ -478,148 +478,111 @@ background: #c0392b;
 
 }
 
-/* MODAL DA FOTO */
+/* =====================================================
+   MODAL DA FOTO
+===================================================== */
 
 .modal-foto {
 
-```
-display: none;
+    display: none;
 
-position: fixed;
+    position: fixed;
 
-z-index: 9999;
+    z-index: 99999;
 
-left: 0;
+    left: 0;
 
-top: 0;
+    top: 0;
 
-width: 100%;
+    width: 100%;
 
-height: 100%;
+    height: 100%;
 
-background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.90);
 
-align-items: center;
+    align-items: center;
 
-justify-content: center;
+    justify-content: center;
 
-padding: 30px;
-```
-
+    padding: 30px;
 }
+
+
+/* MODAL ABERTO */
 
 .modal-foto.ativo {
 
-```
-display: flex;
-```
+    display: flex;
 
 }
+
+
+/* FOTO AMPLIADA */
 
 .modal-foto img {
 
-```
-max-width: 95%;
+    display: block;
 
-max-height: 90vh;
+    max-width: 90%;
 
-object-fit: contain;
+    max-height: 85vh;
 
-border-radius: 8px;
-```
+    width: auto;
+
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 8px;
 
 }
+
+
+/* BOTÃO X */
 
 .fechar-modal {
 
-```
-position: absolute;
+    position: fixed;
 
-top: 20px;
+    top: 15px;
 
-right: 25px;
+    left: 20px;
 
-width: 45px;
+    width: 45px;
 
-height: 45px;
+    height: 45px;
 
-padding: 0;
+    padding: 0;
 
-border-radius: 50%;
+    margin: 0;
 
-background: #c0392b;
+    border: none;
 
-color: white;
+    border-radius: 50%;
 
-font-size: 22px;
+    background: #c0392b;
 
-z-index: 10000;
-```
+    color: white;
 
-}
+    font-size: 28px;
 
-/* RODAPÉ */
+    line-height: 45px;
 
-footer {
+    text-align: center;
 
-```
-text-align: center;
+    cursor: pointer;
 
-padding: 25px;
-
-color: #666;
-
-font-size: 14px;
-```
+    z-index: 100000;
 
 }
 
-/* CELULAR */
 
-@media (max-width: 700px) {
+/* EFEITO DO X */
 
-```
-main {
+.fechar-modal:hover {
 
-    grid-template-columns: 1fr;
+    background: #a93226;
 
-    width: 94%;
-
-    margin: 20px auto;
-}
-
-
-section {
-
-    padding: 20px;
-}
-
-
-.filtros {
-
-    flex-direction: column;
-}
-
-
-.filtros select {
-
-    width: 100%;
-}
-
-
-.info-imovel {
-
-    flex-direction: column;
-
-    gap: 5px;
-}
-
-
-.galeria-imovel {
-
-    grid-template-columns:
-        repeat(2, 1fr);
-}
-```
+    opacity: 1;
 
 }
