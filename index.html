@@ -17,22 +17,38 @@
 <body>
 
 <header>
+
+```
+<div class="cabecalho">
+
     <h1>🏠 Imóveis Fácil</h1>
-    <p>Cadastro e gerenciamento de imóveis</p>
+
+    <p>
+        Cadastro e gerenciamento de imóveis
+    </p>
+
+</div>
+```
+
 </header>
 
 <main>
 
 ```
-<!-- ==============================
+<!-- ==========================================
      FORMULÁRIO
-=============================== -->
+=========================================== -->
 
 <section class="formulario">
 
-    <h2>Cadastrar imóvel</h2>
+    <h2 id="tituloFormulario">
+        Cadastrar imóvel
+    </h2>
+
 
     <form id="formImovel">
+
+        <!-- TIPO -->
 
         <label for="tipo">
             Tipo de imóvel
@@ -63,6 +79,8 @@
         </select>
 
 
+        <!-- ENDEREÇO -->
+
         <label for="endereco">
             Endereço
         </label>
@@ -74,6 +92,8 @@
             required
         >
 
+
+        <!-- PREÇO -->
 
         <label for="preco">
             Preço
@@ -89,6 +109,8 @@
         >
 
 
+        <!-- QUARTOS -->
+
         <label for="quartos">
             Quartos
         </label>
@@ -100,6 +122,8 @@
             min="0"
         >
 
+
+        <!-- BANHEIROS -->
 
         <label for="banheiros">
             Banheiros
@@ -113,6 +137,8 @@
         >
 
 
+        <!-- VAGAS -->
+
         <label for="vagas">
             Vagas de garagem
         </label>
@@ -124,6 +150,8 @@
             min="0"
         >
 
+
+        <!-- ÁREA -->
 
         <label for="area">
             Área (m²)
@@ -138,6 +166,8 @@
         >
 
 
+        <!-- DESCRIÇÃO -->
+
         <label for="descricao">
             Descrição
         </label>
@@ -149,13 +179,14 @@
         ></textarea>
 
 
-        <!-- ==============================
+        <!-- ==========================================
              FOTOS
-        =============================== -->
+        =========================================== -->
 
         <label for="fotos">
             📷 Fotos do imóvel
         </label>
+
 
         <input
             type="file"
@@ -164,10 +195,13 @@
             multiple
         >
 
+
         <small class="ajuda-fotos">
-            Você pode selecionar várias fotos de uma vez
-            ou adicionar mais fotos posteriormente.
+            Selecione uma ou várias fotos.
+            Você também pode adicionar mais fotos
+            ao editar o imóvel.
         </small>
+
 
         <div
             id="previewFotos"
@@ -175,8 +209,24 @@
         ></div>
 
 
-        <button type="submit">
+        <!-- BOTÃO -->
+
+        <button
+            type="submit"
+            id="btnSalvar"
+            class="btn-salvar"
+        >
             Cadastrar imóvel
+        </button>
+
+
+        <button
+            type="button"
+            id="btnCancelarEdicao"
+            class="btn-cancelar"
+            style="display: none;"
+        >
+            Cancelar edição
         </button>
 
     </form>
@@ -184,14 +234,15 @@
 </section>
 
 
-<!-- ==============================
+
+<!-- ==========================================
      LISTA DE IMÓVEIS
-=============================== -->
+=========================================== -->
 
 <section class="lista">
 
     <h2>
-        Imóveis cadastrados
+        🏠 Imóveis cadastrados
     </h2>
 
 
@@ -204,6 +255,7 @@
             id="pesquisa"
             placeholder="🔎 Pesquisar por endereço..."
         >
+
 
         <select id="filtroTipo">
 
@@ -232,13 +284,17 @@
     </div>
 
 
+    <!-- CONTADOR -->
+
+    <div
+        id="contadorImoveis"
+        class="contador"
+    ></div>
+
+
     <!-- LISTA -->
 
     <div id="listaImoveis">
-
-        <p>
-            Nenhum imóvel cadastrado.
-        </p>
 
     </div>
 
@@ -247,9 +303,9 @@
 
 </main>
 
-<!-- ==============================
-     MODAL DA FOTO
-=============================== -->
+<!-- ==========================================
+     MODAL FOTO
+=========================================== -->
 
 <div
     id="modalFoto"
@@ -266,18 +322,19 @@
     ✕
 </button>
 
+
 <img
     id="fotoAmpliada"
     src=""
-    alt="Foto do imóvel"
+    alt="Foto ampliada do imóvel"
 >
 ```
 
 </div>
 
-<!-- ==============================
+<!-- ==========================================
      RODAPÉ
-=============================== -->
+=========================================== -->
 
 <footer>
 
