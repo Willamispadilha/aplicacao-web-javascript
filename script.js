@@ -1,19 +1,51 @@
 ```javascript
 // ======================================================
 // IMÓVEIS FÁCIL
-// Versão completa e corrigida
+// SCRIPT COMPLETO
+// ======================================================
+
+
+// ======================================================
+// ELEMENTOS
 // ======================================================
 
 const form = document.getElementById("formImovel");
-const listaImoveis = document.getElementById("listaImoveis");
-const pesquisa = document.getElementById("pesquisa");
-const filtroTipo = document.getElementById("filtroTipo");
 
-const campoFotos = document.getElementById("fotos");
-const previewFotos = document.getElementById("previewFotos");
+const listaImoveis =
+    document.getElementById("listaImoveis");
 
-const modalFoto = document.getElementById("modalFoto");
-const fotoAmpliada = document.getElementById("fotoAmpliada");
+const pesquisa =
+    document.getElementById("pesquisa");
+
+const filtroTipo =
+    document.getElementById("filtroTipo");
+
+const campoFotos =
+    document.getElementById("fotos");
+
+const previewFotos =
+    document.getElementById("previewFotos");
+
+const modalFoto =
+    document.getElementById("modalFoto");
+
+const fotoAmpliada =
+    document.getElementById("fotoAmpliada");
+
+const fecharModal =
+    document.getElementById("fecharModal");
+
+const btnSalvar =
+    document.getElementById("btnSalvar");
+
+const btnCancelarEdicao =
+    document.getElementById("btnCancelarEdicao");
+
+const tituloFormulario =
+    document.getElementById("tituloFormulario");
+
+const contadorImoveis =
+    document.getElementById("contadorImoveis");
 
 
 // ======================================================
@@ -37,32 +69,94 @@ function carregarImoveis() {
 
     try {
 
-        const dados = localStorage.getItem("imoveis");
+        const dados =
+            localStorage.getItem("imoveis");
+
 
         if (!dados) {
+
             imoveis = [];
+
             return;
+
         }
 
-        const dadosConvertidos = JSON.parse(dados);
 
-        if (Array.isArray(dadosConvertidos)) {
-            imoveis = dadosConvertidos;
+        const dadosConvertidos =
+            JSON.parse(dados);
+
+
+        if (
+            Array.isArray(
+                dadosConvertidos
+            )
+        ) {
+
+            imoveis =
+                dadosConvertidos;
+
         } else {
+
             imoveis = [];
+
         }
+
+
+        // Garante compatibilidade
+        // com imóveis antigos.
+        imoveis.forEach(
+            function (imovel) {
+
+                if (
+                    !Array.isArray(
+                        imovel.fotos
+                    )
+                ) {
+
+                    imovel.fotos = [];
+
+                }
+
+
+                let principal =
+                    Number(
+                        imovel.fotoPrincipal
+                    );
+
+
+                if (
+                    !Number.isInteger(
+                        principal
+                    ) ||
+                    principal < 0 ||
+                    principal >=
+                        imovel.fotos.length
+                ) {
+
+                    imovel.fotoPrincipal = 0;
+
+                }
+
+            }
+        );
+
 
     } catch (erro) {
 
-        console.error("Erro ao carregar imóveis:", erro);
+        console.error(
+            "Erro ao carregar imóveis:",
+            erro
+        );
 
         imoveis = [];
+
     }
+
 }
 
 
 // ======================================================
-// SALVAR IMÓVEIS
+// SALVAR
 // ======================================================
 
 function salvarImoveis() {
@@ -74,15 +168,28 @@ function salvarImoveis() {
             JSON.stringify(imoveis)
         );
 
+
+        return true;
+
+
     } catch (erro) {
 
-        console.error("Erro ao salvar imóveis:", erro);
+        console.error(
+            "Erro ao salvar imóveis:",
+            erro
+        );
+
 
         alert(
-            "Não foi possível salvar os dados. " +
+            "Não foi possível salvar. " +
             "O armazenamento do navegador pode estar cheio."
         );
+
+
+        return false;
+
     }
+
 }
 
 
@@ -90,277 +197,317 @@ function salvarImoveis() {
 // INICIALIZAÇÃO
 // ======================================================
 
-document.addEventListener("DOMContentLoaded", function () {
+carregarImoveis();
 
-    carregarImoveis();
+renderizarImoveis();
 
-    renderizarImoveis();
-
-    atualizarPreviewFotos();
-
-});
+atualizarPreviewFotos();
 
 
 // ======================================================
-// SELEÇÃO DE FOTOS
+// SELECIONAR FOTOS
 // ======================================================
 
 if (campoFotos) {
 
-    campoFotos.addEventListener("change", function () {
+    campoFotos.addEventListener(
+        "change",
+        function () {
 
-        const arquivos = Array.from(this.files);
-
-        if (arquivos.length === 0) {
-            return;
-        }
-
-
-        arquivos.forEach(function (arquivo) {
-
-            if (!arquivo.type.startsWith("image/")) {
-
-                alert(
-                    "O arquivo " +
-                    arquivo.name +
-                    " não é uma imagem."
+            const arquivos =
+                Array.from(
+                    this.files
                 );
 
+
+            if (
+                arquivos.length === 0
+            ) {
+
                 return;
+
             }
 
 
-            const leitor = new FileReader();
+            arquivos.forEach(
+                function (arquivo) {
+
+                    if (
+                        !arquivo.type.startsWith(
+                            "image/"
+                        )
+                    ) {
+
+                        alert(
+                            arquivo.name +
+                            " não é uma imagem."
+                        );
+
+                        return;
+
+                    }
 
 
-            leitor.onload = function (evento) {
-
-                fotosSelecionadas.push(
-                    evento.target.result
-                );
+                    const leitor =
+                        new FileReader();
 
 
-                // Se ainda não havia foto,
-                // a primeira vira principal.
-                if (fotosSelecionadas.length === 1) {
+                    leitor.onload =
+                        function (evento) {
 
-                    fotoPrincipalIndex = 0;
+                            fotosSelecionadas.push(
+                                evento.target.result
+                            );
+
+
+                            // Primeira foto
+                            // é principal.
+                            if (
+                                fotosSelecionadas.length === 1
+                            ) {
+
+                                fotoPrincipalIndex =
+                                    0;
+
+                            }
+
+
+                            atualizarPreviewFotos();
+
+                        };
+
+
+                    leitor.onerror =
+                        function () {
+
+                            console.error(
+                                "Erro ao carregar:",
+                                arquivo.name
+                            );
+
+                        };
+
+
+                    leitor.readAsDataURL(
+                        arquivo
+                    );
 
                 }
+            );
 
 
-                atualizarPreviewFotos();
+            // Permite selecionar
+            // novamente a mesma foto.
+            this.value = "";
 
-            };
-
-
-            leitor.onerror = function () {
-
-                console.error(
-                    "Erro ao carregar a foto:",
-                    arquivo.name
-                );
-
-            };
-
-
-            leitor.readAsDataURL(arquivo);
-
-        });
-
-
-        // Permite selecionar novamente
-        // a mesma foto depois.
-        this.value = "";
-
-    });
+        }
+    );
 
 }
 
 
 // ======================================================
-// PREVIEW DAS FOTOS
+// MOSTRAR FOTOS
 // ======================================================
 
 function atualizarPreviewFotos() {
 
     if (!previewFotos) {
+
         return;
+
     }
 
 
     previewFotos.innerHTML = "";
 
 
-    if (fotosSelecionadas.length === 0) {
+    if (
+        fotosSelecionadas.length === 0
+    ) {
 
         previewFotos.innerHTML =
             '<p class="sem-fotos">Nenhuma foto selecionada.</p>';
 
         return;
+
     }
 
 
-    fotosSelecionadas.forEach(function (foto, index) {
+    fotosSelecionadas.forEach(
+        function (foto, index) {
 
-        const container =
-            document.createElement("div");
+            const container =
+                document.createElement(
+                    "div"
+                );
 
 
-        container.className =
-            "foto-preview-item";
+            container.className =
+                "foto-preview-item";
 
 
-        if (index === fotoPrincipalIndex) {
+            if (
+                index ===
+                fotoPrincipalIndex
+            ) {
 
-            container.classList.add(
-                "foto-principal"
+                container.classList.add(
+                    "foto-principal"
+                );
+
+            }
+
+
+            // ==========================================
+            // FOTO
+            // ==========================================
+
+            const imagem =
+                document.createElement(
+                    "img"
+                );
+
+
+            imagem.src =
+                foto;
+
+
+            imagem.alt =
+                "Foto " +
+                (index + 1);
+
+
+            imagem.addEventListener(
+                "click",
+                function () {
+
+                    abrirFoto(
+                        foto
+                    );
+
+                }
+            );
+
+
+            // ==========================================
+            // AÇÕES
+            // ==========================================
+
+            const acoes =
+                document.createElement(
+                    "div"
+                );
+
+
+            acoes.className =
+                "acoes-foto";
+
+
+            // ==========================================
+            // PRINCIPAL
+            // ==========================================
+
+            const botaoPrincipal =
+                document.createElement(
+                    "button"
+                );
+
+
+            botaoPrincipal.type =
+                "button";
+
+
+            botaoPrincipal.className =
+                "btn-principal";
+
+
+            botaoPrincipal.textContent =
+                index === fotoPrincipalIndex
+                    ? "⭐ Principal"
+                    : "☆ Principal";
+
+
+            botaoPrincipal.addEventListener(
+                "click",
+                function (evento) {
+
+                    evento.preventDefault();
+
+                    evento.stopPropagation();
+
+                    definirFotoPrincipal(
+                        index
+                    );
+
+                }
+            );
+
+
+            // ==========================================
+            // EXCLUIR
+            // ==========================================
+
+            const botaoExcluir =
+                document.createElement(
+                    "button"
+                );
+
+
+            botaoExcluir.type =
+                "button";
+
+
+            botaoExcluir.className =
+                "btn-excluir-foto";
+
+
+            botaoExcluir.textContent =
+                "🗑️ Excluir";
+
+
+            botaoExcluir.addEventListener(
+                "click",
+                function (evento) {
+
+                    evento.preventDefault();
+
+                    evento.stopPropagation();
+
+                    excluirFoto(
+                        index
+                    );
+
+                }
+            );
+
+
+            acoes.appendChild(
+                botaoPrincipal
+            );
+
+
+            acoes.appendChild(
+                botaoExcluir
+            );
+
+
+            container.appendChild(
+                imagem
+            );
+
+
+            container.appendChild(
+                acoes
+            );
+
+
+            previewFotos.appendChild(
+                container
             );
 
         }
-
-
-        // ==================================================
-        // IMAGEM
-        // ==================================================
-
-        const imagem =
-            document.createElement("img");
-
-
-        imagem.src = foto;
-
-        imagem.alt =
-            "Foto " + (index + 1);
-
-
-        imagem.addEventListener(
-            "click",
-            function () {
-
-                abrirFoto(foto);
-
-            }
-        );
-
-
-        // ==================================================
-        // ÁREA DE AÇÕES
-        // ==================================================
-
-        const acoes =
-            document.createElement("div");
-
-
-        acoes.className =
-            "acoes-foto";
-
-
-        // ==================================================
-        // BOTÃO PRINCIPAL
-        // ==================================================
-
-        const botaoPrincipal =
-            document.createElement("button");
-
-
-        botaoPrincipal.type =
-            "button";
-
-
-        botaoPrincipal.className =
-            "btn-principal";
-
-
-        botaoPrincipal.textContent =
-            index === fotoPrincipalIndex
-                ? "⭐ Principal"
-                : "☆ Principal";
-
-
-        botaoPrincipal.title =
-            "Definir esta foto como principal";
-
-
-        botaoPrincipal.addEventListener(
-            "click",
-            function (evento) {
-
-                evento.preventDefault();
-
-                evento.stopPropagation();
-
-                definirFotoPrincipal(index);
-
-            }
-        );
-
-
-        // ==================================================
-        // BOTÃO EXCLUIR
-        // ==================================================
-
-        const botaoExcluir =
-            document.createElement("button");
-
-
-        botaoExcluir.type =
-            "button";
-
-
-        botaoExcluir.className =
-            "btn-excluir-foto";
-
-
-        botaoExcluir.textContent =
-            "🗑️ Excluir";
-
-
-        botaoExcluir.title =
-            "Excluir esta foto";
-
-
-        botaoExcluir.addEventListener(
-            "click",
-            function (evento) {
-
-                evento.preventDefault();
-
-                evento.stopPropagation();
-
-                excluirFoto(index);
-
-            }
-        );
-
-
-        // ==================================================
-        // MONTAR
-        // ==================================================
-
-        acoes.appendChild(
-            botaoPrincipal
-        );
-
-        acoes.appendChild(
-            botaoExcluir
-        );
-
-
-        container.appendChild(
-            imagem
-        );
-
-        container.appendChild(
-            acoes
-        );
-
-
-        previewFotos.appendChild(
-            container
-        );
-
-    });
+    );
 
 }
 
@@ -375,11 +522,14 @@ function definirFotoPrincipal(index) {
         index < 0 ||
         index >= fotosSelecionadas.length
     ) {
+
         return;
+
     }
 
 
-    fotoPrincipalIndex = index;
+    fotoPrincipalIndex =
+        index;
 
 
     atualizarPreviewFotos();
@@ -397,68 +547,68 @@ function excluirFoto(index) {
         index < 0 ||
         index >= fotosSelecionadas.length
     ) {
+
         return;
+
     }
 
 
     const eraPrincipal =
-        index === fotoPrincipalIndex;
+        index ===
+        fotoPrincipalIndex;
 
 
-    // Remove somente a foto escolhida
-    fotosSelecionadas.splice(index, 1);
+    fotosSelecionadas.splice(
+        index,
+        1
+    );
 
 
-    // ==================================================
-    // SEM FOTOS
-    // ==================================================
+    // ==========================================
+    // NÃO HÁ MAIS FOTOS
+    // ==========================================
 
-    if (fotosSelecionadas.length === 0) {
+    if (
+        fotosSelecionadas.length === 0
+    ) {
 
         fotoPrincipalIndex = 0;
 
     }
 
 
-    // ==================================================
+    // ==========================================
     // EXCLUIU A PRINCIPAL
-    // ==================================================
+    // ==========================================
 
     else if (eraPrincipal) {
 
-        /*
-         * Depois da remoção:
-         *
-         * Foto 1 ⭐
-         * Foto 2
-         * Foto 3
-         *
-         * Se Foto 1 for excluída,
-         * Foto 2 passa a ser principal.
-         */
-
         if (
-            index < fotosSelecionadas.length
+            index <
+            fotosSelecionadas.length
         ) {
 
-            fotoPrincipalIndex = index;
+            fotoPrincipalIndex =
+                index;
 
         } else {
 
             fotoPrincipalIndex =
-                fotosSelecionadas.length - 1;
+                fotosSelecionadas.length -
+                1;
 
         }
 
     }
 
 
-    // ==================================================
-    // EXCLUIU UMA FOTO ANTES DA PRINCIPAL
-    // ==================================================
+    // ==========================================
+    // EXCLUIU FOTO ANTES DA PRINCIPAL
+    // ==========================================
 
     else if (
-        index < fotoPrincipalIndex
+        index <
+        fotoPrincipalIndex
     ) {
 
         fotoPrincipalIndex--;
@@ -472,7 +622,7 @@ function excluirFoto(index) {
 
 
 // ======================================================
-// CADASTRAR / EDITAR
+// CADASTRAR / SALVAR EDIÇÃO
 // ======================================================
 
 if (form) {
@@ -484,45 +634,61 @@ if (form) {
             evento.preventDefault();
 
 
-            // ==================================================
-            // PEGAR CAMPOS
-            // ==================================================
+            // ==========================================
+            // CAMPOS
+            // ==========================================
 
             const tipo =
-                document.getElementById("tipo")?.value || "";
+                document.getElementById(
+                    "tipo"
+                ).value;
 
 
             const endereco =
-                document.getElementById("endereco")?.value || "";
+                document.getElementById(
+                    "endereco"
+                ).value;
 
 
             const preco =
-                document.getElementById("preco")?.value || "";
+                document.getElementById(
+                    "preco"
+                ).value;
 
 
             const quartos =
-                document.getElementById("quartos")?.value || "";
+                document.getElementById(
+                    "quartos"
+                ).value;
 
 
             const banheiros =
-                document.getElementById("banheiros")?.value || "";
+                document.getElementById(
+                    "banheiros"
+                ).value;
 
 
             const vagas =
-                document.getElementById("vagas")?.value || "";
+                document.getElementById(
+                    "vagas"
+                ).value;
 
 
             const area =
-                document.getElementById("area")?.value || "";
+                document.getElementById(
+                    "area"
+                ).value;
 
 
             const descricao =
-                document.getElementById("descricao")?.value || "";
+                document.getElementById(
+                    "descricao"
+                ).value;
 
 
-            // ==================================================
-            // CORRIGIR ÍNDICE DA FOTO PRINCIPAL
-            // ==================================================
+            // ==========================================
+            // FOTO PRINCIPAL
+            // ==========================================
 
             if (
                 fotosSelecionadas.length === 0
@@ -531,9 +697,12 @@ if (form) {
                 fotoPrincipalIndex = 0;
 
             }
-            else if (
+
+
+            if (
                 fotoPrincipalIndex < 0 ||
-                fotoPrincipalIndex >= fotosSelecionadas.length
+                fotoPrincipalIndex >=
+                    fotosSelecionadas.length
             ) {
 
                 fotoPrincipalIndex = 0;
@@ -541,29 +710,38 @@ if (form) {
             }
 
 
-            // ==================================================
-            // CRIAR IMÓVEL
-            // ==================================================
+            // ==========================================
+            // OBJETO
+            // ==========================================
 
             const imovel = {
 
-                tipo: tipo,
+                tipo:
+                    tipo,
 
-                endereco: endereco,
+                endereco:
+                    endereco,
 
-                preco: preco,
+                preco:
+                    preco,
 
-                quartos: quartos,
+                quartos:
+                    quartos,
 
-                banheiros: banheiros,
+                banheiros:
+                    banheiros,
 
-                vagas: vagas,
+                vagas:
+                    vagas,
 
-                area: area,
+                area:
+                    area,
 
-                descricao: descricao,
+                descricao:
+                    descricao,
 
-                fotos: [...fotosSelecionadas],
+                fotos:
+                    [...fotosSelecionadas],
 
                 fotoPrincipal:
                     fotoPrincipalIndex
@@ -571,28 +749,25 @@ if (form) {
             };
 
 
-            // ==================================================
+            // ==========================================
             // EDITAR
-            // ==================================================
+            // ==========================================
 
-            if (indiceEdicao !== null) {
+            if (
+                indiceEdicao !== null
+            ) {
 
-                imoveis[indiceEdicao] =
+                imoveis[
+                    indiceEdicao
+                ] =
                     imovel;
-
-                indiceEdicao = null;
-
-
-                alterarTextoBotao(
-                    "Cadastrar imóvel"
-                );
 
             }
 
 
-            // ==================================================
-            // NOVO IMÓVEL
-            // ==================================================
+            // ==========================================
+            // NOVO
+            // ==========================================
 
             else {
 
@@ -603,31 +778,25 @@ if (form) {
             }
 
 
-            // ==================================================
+            // ==========================================
             // SALVAR
-            // ==================================================
+            // ==========================================
 
-            salvarImoveis();
+            if (
+                !salvarImoveis()
+            ) {
 
+                return;
 
-            // ==================================================
-            // LIMPAR FORMULÁRIO
-            // ==================================================
-
-            form.reset();
-
-
-            fotosSelecionadas = [];
-
-            fotoPrincipalIndex = 0;
+            }
 
 
-            atualizarPreviewFotos();
+            // ==========================================
+            // LIMPAR
+            // ==========================================
 
+            limparFormulario();
 
-            // ==================================================
-            // ATUALIZAR LISTA
-            // ==================================================
 
             renderizarImoveis();
 
@@ -647,28 +816,271 @@ if (form) {
 
 
 // ======================================================
-// ALTERAR TEXTO DO BOTÃO
+// LIMPAR FORMULÁRIO
 // ======================================================
 
-function alterarTextoBotao(texto) {
+function limparFormulario() {
 
-    if (!form) {
-        return;
+    if (form) {
+
+        form.reset();
+
     }
 
 
-    const botao =
-        form.querySelector(
-            'button[type="submit"]'
+    fotosSelecionadas = [];
+
+    fotoPrincipalIndex = 0;
+
+    indiceEdicao = null;
+
+
+    atualizarPreviewFotos();
+
+
+    if (btnSalvar) {
+
+        btnSalvar.textContent =
+            "Cadastrar imóvel";
+
+    }
+
+
+    if (btnCancelarEdicao) {
+
+        btnCancelarEdicao.style.display =
+            "none";
+
+    }
+
+
+    if (tituloFormulario) {
+
+        tituloFormulario.textContent =
+            "Cadastrar imóvel";
+
+    }
+
+}
+
+
+// ======================================================
+// EDITAR IMÓVEL
+// ======================================================
+
+function editarImovel(index) {
+
+    const imovel =
+        imoveis[index];
+
+
+    if (!imovel) {
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "tipo"
+    ).value =
+        imovel.tipo || "";
+
+
+    document.getElementById(
+        "endereco"
+    ).value =
+        imovel.endereco || "";
+
+
+    document.getElementById(
+        "preco"
+    ).value =
+        imovel.preco || "";
+
+
+    document.getElementById(
+        "quartos"
+    ).value =
+        imovel.quartos || "";
+
+
+    document.getElementById(
+        "banheiros"
+    ).value =
+        imovel.banheiros || "";
+
+
+    document.getElementById(
+        "vagas"
+    ).value =
+        imovel.vagas || "";
+
+
+    document.getElementById(
+        "area"
+    ).value =
+        imovel.area || "";
+
+
+    document.getElementById(
+        "descricao"
+    ).value =
+        imovel.descricao || "";
+
+
+    // ==========================================
+    // FOTOS EXISTENTES
+    // ==========================================
+
+    fotosSelecionadas =
+        Array.isArray(
+            imovel.fotos
+        )
+            ? [...imovel.fotos]
+            : [];
+
+
+    // ==========================================
+    // PRINCIPAL
+    // ==========================================
+
+    fotoPrincipalIndex =
+        Number(
+            imovel.fotoPrincipal
         );
 
 
-    if (botao) {
+    if (
+        !Number.isInteger(
+            fotoPrincipalIndex
+        ) ||
+        fotoPrincipalIndex < 0 ||
+        fotoPrincipalIndex >=
+            fotosSelecionadas.length
+    ) {
 
-        botao.textContent =
-            texto;
+        fotoPrincipalIndex = 0;
 
     }
+
+
+    indiceEdicao =
+        index;
+
+
+    atualizarPreviewFotos();
+
+
+    if (btnSalvar) {
+
+        btnSalvar.textContent =
+            "Salvar alterações";
+
+    }
+
+
+    if (btnCancelarEdicao) {
+
+        btnCancelarEdicao.style.display =
+            "block";
+
+    }
+
+
+    if (tituloFormulario) {
+
+        tituloFormulario.textContent =
+            "Editar imóvel";
+
+    }
+
+
+    form.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "start"
+
+    });
+
+}
+
+
+// ======================================================
+// CANCELAR EDIÇÃO
+// ======================================================
+
+if (btnCancelarEdicao) {
+
+    btnCancelarEdicao.addEventListener(
+        "click",
+        function () {
+
+            limparFormulario();
+
+        }
+    );
+
+}
+
+
+// ======================================================
+// EXCLUIR IMÓVEL
+// ======================================================
+
+function excluirImovel(index) {
+
+    const imovel =
+        imoveis[index];
+
+
+    if (!imovel) {
+
+        return;
+
+    }
+
+
+    const endereco =
+        imovel.endereco ||
+        "este imóvel";
+
+
+    const confirmar =
+        confirm(
+            "Deseja realmente excluir " +
+            endereco +
+            "?"
+        );
+
+
+    if (!confirmar) {
+
+        return;
+
+    }
+
+
+    imoveis.splice(
+        index,
+        1
+    );
+
+
+    salvarImoveis();
+
+
+    if (
+        indiceEdicao === index
+    ) {
+
+        limparFormulario();
+
+    }
+
+
+    renderizarImoveis();
 
 }
 
@@ -680,7 +1092,9 @@ function alterarTextoBotao(texto) {
 function renderizarImoveis() {
 
     if (!listaImoveis) {
+
         return;
+
     }
 
 
@@ -689,7 +1103,9 @@ function renderizarImoveis() {
 
     const termo =
         pesquisa
-            ? pesquisa.value.toLowerCase().trim()
+            ? pesquisa.value
+                .toLowerCase()
+                .trim()
             : "";
 
 
@@ -705,61 +1121,85 @@ function renderizarImoveis() {
 
                 const endereco =
                     String(
-                        imovel.endereco || ""
+                        imovel.endereco ||
+                        ""
                     ).toLowerCase();
 
 
                 const tipo =
                     String(
-                        imovel.tipo || ""
+                        imovel.tipo ||
+                        ""
                     );
-
-
-                const correspondePesquisa =
-                    endereco.includes(
-                        termo
-                    );
-
-
-                const correspondeTipo =
-                    tipoSelecionado === "" ||
-                    tipo === tipoSelecionado;
 
 
                 return (
-                    correspondePesquisa &&
-                    correspondeTipo
+                    endereco.includes(
+                        termo
+                    ) &&
+                    (
+                        tipoSelecionado === "" ||
+                        tipo === tipoSelecionado
+                    )
                 );
 
             }
         );
 
 
-    // ==================================================
-    // NENHUM IMÓVEL
-    // ==================================================
+    // ==========================================
+    // CONTADOR
+    // ==========================================
 
-    if (encontrados.length === 0) {
+    if (contadorImoveis) {
 
-        listaImoveis.innerHTML = `
-            <div class="nenhum-imovel">
-                <p>Nenhum imóvel encontrado.</p>
-            </div>
-        `;
+        contadorImoveis.textContent =
+            encontrados.length +
+            (
+                encontrados.length === 1
+                    ? " imóvel encontrado"
+                    : " imóveis encontrados"
+            );
 
-        return;
     }
 
 
-    // ==================================================
-    // CRIAR CARDS
-    // ==================================================
+    // ==========================================
+    // NENHUM
+    // ==========================================
+
+    if (
+        encontrados.length === 0
+    ) {
+
+        listaImoveis.innerHTML = `
+
+            <div class="nenhum-imovel">
+
+                <p>
+                    Nenhum imóvel encontrado.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    // ==========================================
+    // CARDS
+    // ==========================================
 
     encontrados.forEach(
         function (imovel) {
 
             const indice =
-                imoveis.indexOf(imovel);
+                imoveis.indexOf(
+                    imovel
+                );
 
 
             criarCardImovel(
@@ -783,29 +1223,37 @@ function criarCardImovel(
 ) {
 
     const card =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     card.className =
         "card-imovel";
 
 
-    // ==================================================
+    // ==========================================
     // FOTOS
-    // ==================================================
+    // ==========================================
 
-    let fotos =
-        Array.isArray(imovel.fotos)
+    const fotos =
+        Array.isArray(
+            imovel.fotos
+        )
             ? imovel.fotos
             : [];
 
 
     let principal =
-        Number(imovel.fotoPrincipal);
+        Number(
+            imovel.fotoPrincipal
+        );
 
 
     if (
-        !Number.isInteger(principal) ||
+        !Number.isInteger(
+            principal
+        ) ||
         principal < 0 ||
         principal >= fotos.length
     ) {
@@ -821,47 +1269,54 @@ function criarCardImovel(
             : "";
 
 
-    // ==================================================
-    // ÁREA DA FOTO PRINCIPAL
-    // ==================================================
+    // ==========================================
+    // FOTO PRINCIPAL
+    // ==========================================
 
-    let htmlFoto =
-        "";
+    let htmlFoto = "";
 
 
     if (fotoPrincipal) {
 
         htmlFoto = `
+
             <img
                 class="imagem-principal-card"
                 src="${fotoPrincipal}"
-                alt="Foto principal do imóvel"
+                alt="Foto principal"
             >
+
         `;
 
-    }
-    else {
+    } else {
 
         htmlFoto = `
+
             <div class="sem-imagem">
+
                 🏠
-                <span>Sem foto</span>
+
+                <span>
+                    Sem foto
+                </span>
+
             </div>
+
         `;
 
     }
 
 
-    // ==================================================
-    // INFORMAÇÕES
-    // ==================================================
+    // ==========================================
+    // DETALHES
+    // ==========================================
 
-    let htmlDetalhes = "";
+    let detalhes = "";
 
 
     if (imovel.quartos) {
 
-        htmlDetalhes +=
+        detalhes +=
             `<span>🛏️ ${imovel.quartos} quartos</span>`;
 
     }
@@ -869,7 +1324,7 @@ function criarCardImovel(
 
     if (imovel.banheiros) {
 
-        htmlDetalhes +=
+        detalhes +=
             `<span>🚿 ${imovel.banheiros} banheiros</span>`;
 
     }
@@ -877,7 +1332,7 @@ function criarCardImovel(
 
     if (imovel.vagas) {
 
-        htmlDetalhes +=
+        detalhes +=
             `<span>🚗 ${imovel.vagas} vagas</span>`;
 
     }
@@ -885,38 +1340,43 @@ function criarCardImovel(
 
     if (imovel.area) {
 
-        htmlDetalhes +=
+        detalhes +=
             `<span>📐 ${imovel.area} m²</span>`;
 
     }
 
 
-    // ==================================================
+    // ==========================================
     // MINIATURAS
-    // ==================================================
+    // ==========================================
 
-    let htmlMiniaturas = "";
+    let miniaturasHTML = "";
 
 
-    if (fotos.length > 1) {
+    if (
+        fotos.length > 1
+    ) {
 
-        htmlMiniaturas =
+        miniaturasHTML =
             `<div class="miniaturas">`;
 
 
         fotos.forEach(
-            function (foto, fotoIndex) {
+            function (
+                foto,
+                fotoIndex
+            ) {
 
-                const classePrincipal =
+                const classe =
                     fotoIndex === principal
                         ? "miniatura-principal"
                         : "";
 
 
-                htmlMiniaturas += `
+                miniaturasHTML += `
 
                     <div
-                        class="miniatura ${classePrincipal}"
+                        class="miniatura ${classe}"
                         data-foto-index="${fotoIndex}"
                     >
 
@@ -927,7 +1387,7 @@ function criarCardImovel(
 
                         ${
                             fotoIndex === principal
-                                ? `<span>⭐</span>`
+                                ? "<span>⭐</span>"
                                 : ""
                         }
 
@@ -939,15 +1399,15 @@ function criarCardImovel(
         );
 
 
-        htmlMiniaturas +=
+        miniaturasHTML +=
             `</div>`;
 
     }
 
 
-    // ==================================================
-    // HTML CARD
-    // ==================================================
+    // ==========================================
+    // CARD
+    // ==========================================
 
     card.innerHTML = `
 
@@ -966,7 +1426,8 @@ function criarCardImovel(
 
 
             <p class="endereco">
-                📍 ${imovel.endereco || "Endereço não informado"}
+                📍
+                ${imovel.endereco || "Endereço não informado"}
             </p>
 
 
@@ -974,7 +1435,8 @@ function criarCardImovel(
                 imovel.preco
                     ? `
                         <p class="preco">
-                            💰 R$ ${formatarPreco(imovel.preco)}
+                            💰 R$
+                            ${formatarPreco(imovel.preco)}
                         </p>
                     `
                     : ""
@@ -982,10 +1444,10 @@ function criarCardImovel(
 
 
             ${
-                htmlDetalhes
+                detalhes
                     ? `
                         <div class="detalhes-imovel">
-                            ${htmlDetalhes}
+                            ${detalhes}
                         </div>
                     `
                     : ""
@@ -1003,7 +1465,7 @@ function criarCardImovel(
             }
 
 
-            ${htmlMiniaturas}
+            ${miniaturasHTML}
 
 
             <div class="acoes-imovel">
@@ -1032,19 +1494,19 @@ function criarCardImovel(
     `;
 
 
-    // ==================================================
+    // ==========================================
     // FOTO PRINCIPAL
-    // ==================================================
+    // ==========================================
 
-    const imagemCard =
+    const imagem =
         card.querySelector(
             ".imagem-principal-card"
         );
 
 
-    if (imagemCard) {
+    if (imagem) {
 
-        imagemCard.addEventListener(
+        imagem.addEventListener(
             "click",
             function () {
 
@@ -1058,9 +1520,9 @@ function criarCardImovel(
     }
 
 
-    // ==================================================
+    // ==========================================
     // MINIATURAS
-    // ==================================================
+    // ==========================================
 
     const miniaturas =
         card.querySelectorAll(
@@ -1098,9 +1560,9 @@ function criarCardImovel(
     );
 
 
-    // ==================================================
-    // BOTÃO EDITAR
-    // ==================================================
+    // ==========================================
+    // EDITAR
+    // ==========================================
 
     const botaoEditar =
         card.querySelector(
@@ -1126,9 +1588,9 @@ function criarCardImovel(
     }
 
 
-    // ==================================================
-    // BOTÃO EXCLUIR
-    // ==================================================
+    // ==========================================
+    // EXCLUIR
+    // ==========================================
 
     const botaoExcluir =
         card.querySelector(
@@ -1162,220 +1624,45 @@ function criarCardImovel(
 
 
 // ======================================================
-// EDITAR IMÓVEL
+// FORMATAR PREÇO
 // ======================================================
 
-function editarImovel(index) {
+function formatarPreco(valor) {
 
-    const imovel =
-        imoveis[index];
+    if (
+        valor === null ||
+        valor === undefined ||
+        valor === ""
+    ) {
 
-
-    if (!imovel) {
-
-        return;
+        return "";
 
     }
 
 
-    // ==================================================
-    // PREENCHER CAMPOS
-    // ==================================================
-
-    const campoTipo =
-        document.getElementById("tipo");
-
-    const campoEndereco =
-        document.getElementById("endereco");
-
-    const campoPreco =
-        document.getElementById("preco");
-
-    const campoQuartos =
-        document.getElementById("quartos");
-
-    const campoBanheiros =
-        document.getElementById("banheiros");
-
-    const campoVagas =
-        document.getElementById("vagas");
-
-    const campoArea =
-        document.getElementById("area");
-
-    const campoDescricao =
-        document.getElementById("descricao");
-
-
-    if (campoTipo)
-        campoTipo.value =
-            imovel.tipo || "";
-
-
-    if (campoEndereco)
-        campoEndereco.value =
-            imovel.endereco || "";
-
-
-    if (campoPreco)
-        campoPreco.value =
-            imovel.preco || "";
-
-
-    if (campoQuartos)
-        campoQuartos.value =
-            imovel.quartos || "";
-
-
-    if (campoBanheiros)
-        campoBanheiros.value =
-            imovel.banheiros || "";
-
-
-    if (campoVagas)
-        campoVagas.value =
-            imovel.vagas || "";
-
-
-    if (campoArea)
-        campoArea.value =
-            imovel.area || "";
-
-
-    if (campoDescricao)
-        campoDescricao.value =
-            imovel.descricao || "";
-
-
-    // ==================================================
-    // CARREGAR FOTOS
-    // ==================================================
-
-    fotosSelecionadas =
-        Array.isArray(imovel.fotos)
-            ? [...imovel.fotos]
-            : [];
-
-
-    // ==================================================
-    // CARREGAR FOTO PRINCIPAL
-    // ==================================================
-
-    fotoPrincipalIndex =
-        Number(imovel.fotoPrincipal);
+    const numero =
+        Number(
+            String(valor)
+                .replace(",", ".")
+        );
 
 
     if (
-        !Number.isInteger(
-            fotoPrincipalIndex
-        ) ||
-        fotoPrincipalIndex < 0 ||
-        fotoPrincipalIndex >= fotosSelecionadas.length
+        Number.isNaN(numero)
     ) {
 
-        fotoPrincipalIndex = 0;
+        return valor;
 
     }
 
 
-    indiceEdicao =
-        index;
-
-
-    atualizarPreviewFotos();
-
-
-    alterarTextoBotao(
-        "Salvar alterações"
-    );
-
-
-    // ==================================================
-    // IR PARA O FORMULÁRIO
-    // ==================================================
-
-    if (form) {
-
-        form.scrollIntoView({
-
-            behavior: "smooth",
-
-            block: "start"
-
-        });
-
-    }
-
-}
-
-
-// ======================================================
-// EXCLUIR IMÓVEL
-// ======================================================
-
-function excluirImovel(index) {
-
-    const imovel =
-        imoveis[index];
-
-
-    if (!imovel) {
-
-        return;
-
-    }
-
-
-    const endereco =
-        imovel.endereco ||
-        "este imóvel";
-
-
-    const confirmar =
-        confirm(
-            `Deseja realmente excluir ${endereco}?`
-        );
-
-
-    if (!confirmar) {
-
-        return;
-
-    }
-
-
-    imoveis.splice(
-        index,
-        1
-    );
-
-
-    salvarImoveis();
-
-
-    // Se estava editando este imóvel
-    if (indiceEdicao === index) {
-
-        indiceEdicao = null;
-
-        fotosSelecionadas = [];
-
-        fotoPrincipalIndex = 0;
-
-        if (form) {
-            form.reset();
+    return numero.toLocaleString(
+        "pt-BR",
+        {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
         }
-
-        atualizarPreviewFotos();
-
-        alterarTextoBotao(
-            "Cadastrar imóvel"
-        );
-
-    }
-
-
-    renderizarImoveis();
+    );
 
 }
 
@@ -1417,75 +1704,7 @@ if (filtroTipo) {
 
 
 // ======================================================
-// FORMATAR PREÇO
-// ======================================================
-
-function formatarPreco(valor) {
-
-    if (
-        valor === null ||
-        valor === undefined ||
-        valor === ""
-    ) {
-
-        return "";
-
-    }
-
-
-    let texto =
-        String(valor).trim();
-
-
-    // Se já estiver em formato brasileiro
-    if (
-        texto.includes(".") &&
-        texto.includes(",")
-    ) {
-
-        texto =
-            texto
-                .replace(/\./g, "")
-                .replace(",", ".");
-
-    }
-
-    else if (
-        texto.includes(",")
-    ) {
-
-        texto =
-            texto.replace(",", ".");
-
-    }
-
-
-    const numero =
-        Number(texto);
-
-
-    if (
-        Number.isNaN(numero)
-    ) {
-
-        return valor;
-
-    }
-
-
-    return numero.toLocaleString(
-        "pt-BR",
-        {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        }
-    );
-
-}
-
-
-// ======================================================
-// ABRIR FOTO AMPLIADA
+// ABRIR FOTO
 // ======================================================
 
 function abrirFoto(foto) {
@@ -1539,7 +1758,25 @@ function fecharFoto() {
 
 
 // ======================================================
-// CLICAR FORA DA FOTO
+// BOTÃO FECHAR
+// ======================================================
+
+if (fecharModal) {
+
+    fecharModal.addEventListener(
+        "click",
+        function () {
+
+            fecharFoto();
+
+        }
+    );
+
+}
+
+
+// ======================================================
+// CLICAR FORA
 // ======================================================
 
 if (modalFoto) {
@@ -1564,7 +1801,7 @@ if (modalFoto) {
 
 
 // ======================================================
-// TECLA ESC
+// ESC
 // ======================================================
 
 document.addEventListener(
