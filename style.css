@@ -11,7 +11,9 @@ color: #333;
 min-height: 100vh;
 }
 
-/* CABEÇALHO */
+/* =========================================
+CABEÇALHO
+========================================= */
 
 header {
 background: #1f4e79;
@@ -24,11 +26,13 @@ header h1 {
 margin-bottom: 10px;
 }
 
-/* CONTEÚDO PRINCIPAL */
+/* =========================================
+CONTEÚDO PRINCIPAL
+========================================= */
 
 main {
 width: 90%;
-max-width: 1000px;
+max-width: 1100px;
 margin: 30px auto;
 
 ```
@@ -41,7 +45,9 @@ gap: 25px;
 
 }
 
-/* SEÇÕES */
+/* =========================================
+SEÇÕES
+========================================= */
 
 section {
 background: white;
@@ -57,7 +63,9 @@ box-shadow:
 
 }
 
-/* TÍTULOS */
+/* =========================================
+TÍTULOS
+========================================= */
 
 h2 {
 margin-bottom: 20px;
@@ -68,7 +76,9 @@ color: #1f4e79;
 
 }
 
-/* FORMULÁRIO */
+/* =========================================
+FORMULÁRIO
+========================================= */
 
 form {
 display: flex;
@@ -87,10 +97,9 @@ font-weight: bold;
 input,
 select,
 textarea {
-
-```
 padding: 12px;
 
+```
 margin-bottom: 15px;
 
 border: 1px solid #ccc;
@@ -116,10 +125,9 @@ min-height: 100px;
 input:focus,
 select:focus,
 textarea:focus {
-
-```
 outline: none;
 
+```
 border-color: #1f4e79;
 
 box-shadow:
@@ -128,13 +136,14 @@ box-shadow:
 
 }
 
-/* BOTÃO PRINCIPAL */
+/* =========================================
+BOTÃO PRINCIPAL
+========================================= */
 
 button {
-
-```
 padding: 12px;
 
+```
 border: none;
 
 border-radius: 6px;
@@ -151,20 +160,17 @@ cursor: pointer;
 }
 
 button:hover {
-
-```
 opacity: 0.9;
-```
-
 }
 
-/* FOTOS DO FORMULÁRIO */
+/* =========================================
+FOTOS DO FORMULÁRIO
+========================================= */
 
 .ajuda-fotos {
-
-```
 color: #666;
 
+```
 font-size: 13px;
 
 margin-top: -10px;
@@ -175,10 +181,9 @@ margin-bottom: 12px;
 }
 
 .preview-fotos {
-
-```
 display: grid;
 
+```
 grid-template-columns:
     repeat(auto-fill, minmax(90px, 1fr));
 
@@ -190,10 +195,9 @@ margin-bottom: 15px;
 }
 
 .preview-foto-item {
-
-```
 position: relative;
 
+```
 height: 90px;
 
 border-radius: 6px;
@@ -201,15 +205,16 @@ border-radius: 6px;
 overflow: hidden;
 
 border: 1px solid #ddd;
+
+background: #f4f6f8;
 ```
 
 }
 
 .preview-foto-item img {
-
-```
 width: 100%;
 
+```
 height: 100%;
 
 object-fit: cover;
@@ -217,14 +222,15 @@ object-fit: cover;
 
 }
 
-/* FILTROS */
+/* =========================================
+FILTROS
+========================================= */
 
 .filtros {
-
-```
 display: flex;
 
-gap: 5px;
+```
+gap: 8px;
 
 margin-bottom: 15px;
 ```
@@ -232,32 +238,31 @@ margin-bottom: 15px;
 }
 
 .filtros input {
-
-```
 flex: 1;
 
+```
 margin-bottom: 0;
 ```
 
 }
 
 .filtros select {
+width: 180px;
 
 ```
-width: 160px;
-
 margin-bottom: 0;
 ```
 
 }
 
-/* CARD DO IMÓVEL */
+/* =========================================
+CARD DO IMÓVEL
+========================================= */
 
 .imovel {
-
-```
 border: 1px solid #ddd;
 
+```
 border-radius: 8px;
 
 padding: 15px;
@@ -270,10 +275,9 @@ background: #fff;
 }
 
 .imovel h3 {
-
-```
 color: #1f4e79;
 
+```
 margin-bottom: 12px;
 
 font-size: 20px;
@@ -282,20 +286,18 @@ font-size: 20px;
 }
 
 .imovel p {
-
-```
 margin-bottom: 7px;
 
+```
 line-height: 1.4;
 ```
 
 }
 
 .imovel .descricao {
-
-```
 margin-top: 12px;
 
+```
 padding-top: 10px;
 
 border-top: 1px solid #eee;
@@ -304,22 +306,22 @@ border-top: 1px solid #eee;
 }
 
 .imovel .descricao strong {
-
-```
 display: block;
 
+```
 margin-bottom: 5px;
 ```
 
 }
 
-/* GALERIA DO IMÓVEL */
+/* =========================================
+GALERIA DO IMÓVEL
+========================================= */
 
 .galeria-imovel {
-
-```
 display: grid;
 
+```
 grid-template-columns:
     repeat(auto-fill, minmax(110px, 1fr));
 
@@ -331,10 +333,9 @@ margin: 15px 0;
 }
 
 .foto-imovel {
-
-```
 position: relative;
 
+```
 height: 110px;
 
 border-radius: 7px;
@@ -349,10 +350,9 @@ background: #f4f6f8;
 }
 
 .foto-imovel img {
-
-```
 width: 100%;
 
+```
 height: 100%;
 
 object-fit: cover;
@@ -365,50 +365,104 @@ transition: transform 0.2s;
 }
 
 .foto-imovel img:hover {
-
-```
 transform: scale(1.05);
-```
-
 }
 
-/* BOTÃO EXCLUIR FOTO */
+/* =========================================
+FOTO PRINCIPAL
+========================================= */
 
-.btn-excluir-foto {
+.foto-principal {
+border: 3px solid #1f4e79;
+}
 
-```
+.etiqueta-principal {
 position: absolute;
 
-top: 5px;
+```
+left: 5px;
 
-right: 5px;
+bottom: 5px;
 
-width: 28px;
-
-height: 28px;
-
-padding: 0;
-
-border-radius: 50%;
-
-background: #c0392b;
+background: #1f4e79;
 
 color: white;
 
-font-size: 14px;
+padding: 4px 7px;
+
+border-radius: 4px;
+
+font-size: 11px;
+
+font-weight: bold;
 
 z-index: 2;
 ```
 
 }
 
-/* INFORMAÇÕES DO IMÓVEL */
+/* =========================================
+BOTÕES DAS FOTOS
+========================================= */
 
-.info-imovel {
+.botoes-foto {
+position: absolute;
 
 ```
+top: 5px;
+
+right: 5px;
+
 display: flex;
 
+gap: 4px;
+
+z-index: 3;
+```
+
+}
+
+.btn-foto {
+width: 28px;
+
+```
+height: 28px;
+
+padding: 0;
+
+border-radius: 50%;
+
+font-size: 13px;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+```
+
+}
+
+/* BOTÃO PRINCIPAL */
+
+.btn-principal {
+background: #f39c12;
+}
+
+/* BOTÃO EXCLUIR */
+
+.btn-excluir-foto {
+background: #c0392b;
+}
+
+/* =========================================
+INFORMAÇÕES DO IMÓVEL
+========================================= */
+
+.info-imovel {
+display: flex;
+
+```
 flex-wrap: wrap;
 
 gap: 8px;
@@ -419,10 +473,9 @@ margin: 12px 0;
 }
 
 .info-item {
-
-```
 background: #f4f6f8;
 
+```
 padding: 7px 10px;
 
 border-radius: 5px;
@@ -432,14 +485,15 @@ font-size: 14px;
 
 }
 
-/* BOTÕES */
+/* =========================================
+BOTÕES DO IMÓVEL
+========================================= */
 
 .botoes {
-
-```
 display: flex;
 
-gap: 5px;
+```
+gap: 8px;
 
 margin-top: 12px;
 ```
@@ -447,10 +501,9 @@ margin-top: 12px;
 }
 
 .botoes button {
-
-```
 width: auto;
 
+```
 padding: 10px 14px;
 
 font-size: 14px;
@@ -458,131 +511,215 @@ font-size: 14px;
 
 }
 
-/* BOTÃO EDITAR */
+/* EDITAR */
 
 .btn-editar {
-
-```
 background: #1f4e79;
-```
-
 }
 
-/* BOTÃO EXCLUIR */
+/* EXCLUIR */
 
 .btn-excluir {
-
-```
 background: #c0392b;
-```
-
 }
 
-/* =====================================================
-   MODAL DA FOTO
-===================================================== */
+/* =========================================
+MODAL DA FOTO
+========================================= */
 
 .modal-foto {
+display: none;
 
-    display: none;
+```
+position: fixed;
 
-    position: fixed;
+z-index: 99999;
 
-    z-index: 99999;
+left: 0;
 
-    left: 0;
+top: 0;
 
-    top: 0;
+width: 100%;
 
-    width: 100%;
+height: 100%;
 
-    height: 100%;
+background: rgba(0, 0, 0, 0.90);
 
-    background: rgba(0, 0, 0, 0.90);
+align-items: center;
 
-    align-items: center;
+justify-content: center;
 
-    justify-content: center;
+padding: 30px;
+```
 
-    padding: 30px;
 }
-
 
 /* MODAL ABERTO */
 
 .modal-foto.ativo {
-
-    display: flex;
-
+display: flex;
 }
-
 
 /* FOTO AMPLIADA */
 
 .modal-foto img {
+display: block;
 
-    display: block;
+```
+max-width: 90%;
 
-    max-width: 90%;
+max-height: 85vh;
 
-    max-height: 85vh;
+width: auto;
 
-    width: auto;
+height: auto;
 
-    height: auto;
+object-fit: contain;
 
-    object-fit: contain;
-
-    border-radius: 8px;
+border-radius: 8px;
+```
 
 }
 
-
-/* BOTÃO X */
+/* =========================================
+BOTÃO FECHAR MODAL
+========================================= */
 
 .fechar-modal {
+position: fixed;
 
-    position: fixed;
+```
+top: 15px;
 
-    top: 15px;
+left: 20px;
 
-    left: 20px;
+width: 45px;
 
-    width: 45px;
+height: 45px;
 
-    height: 45px;
+padding: 0;
 
-    padding: 0;
+margin: 0;
 
-    margin: 0;
+border: none;
 
-    border: none;
+border-radius: 50%;
 
-    border-radius: 50%;
+background: #c0392b;
 
-    background: #c0392b;
+color: white;
 
-    color: white;
+font-size: 28px;
 
-    font-size: 28px;
+line-height: 45px;
 
-    line-height: 45px;
+text-align: center;
 
-    text-align: center;
+cursor: pointer;
 
-    cursor: pointer;
-
-    z-index: 100000;
+z-index: 100000;
+```
 
 }
 
-
-/* EFEITO DO X */
-
 .fechar-modal:hover {
+background: #a93226;
 
-    background: #a93226;
+```
+opacity: 1;
+```
 
-    opacity: 1;
+}
+
+/* =========================================
+RODAPÉ
+========================================= */
+
+footer {
+text-align: center;
+
+```
+padding: 25px 15px;
+
+color: #666;
+
+font-size: 13px;
+```
+
+}
+
+footer p {
+margin-bottom: 5px;
+}
+
+/* =========================================
+CELULAR
+========================================= */
+
+@media (max-width: 800px) {
+
+```
+main {
+    width: 95%;
+
+    grid-template-columns: 1fr;
+}
+
+.filtros {
+    flex-direction: column;
+}
+
+.filtros select {
+    width: 100%;
+}
+
+.galeria-imovel {
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(90px, 1fr)
+        );
+}
+
+.foto-imovel {
+    height: 90px;
+}
+```
+
+}
+
+@media (max-width: 500px) {
+
+```
+header {
+    padding: 22px 15px;
+}
+
+header h1 {
+    font-size: 24px;
+}
+
+section {
+    padding: 18px;
+}
+
+.botoes {
+    flex-direction: column;
+}
+
+.botoes button {
+    width: 100%;
+}
+
+.modal-foto {
+    padding: 15px;
+}
+
+.modal-foto img {
+    max-width: 96%;
+
+    max-height: 80vh;
+}
+```
 
 }
