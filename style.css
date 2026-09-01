@@ -1,725 +1,435 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  }
+```css
+/* ================================
+   IMÓVEIS FÁCIL - STYLE.CSS
+   ================================ */
 
-body {
-font-family: Arial, sans-serif;
-background: #f4f6f8;
-color: #333;
-min-height: 100vh;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* =========================================
-CABEÇALHO
-========================================= */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6f8;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* ================================
+   CABEÇALHO
+   ================================ */
 
 header {
-background: #1f4e79;
-color: white;
-text-align: center;
-padding: 30px 20px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
 header h1 {
-margin-bottom: 10px;
+    font-size: 32px;
+    margin-bottom: 8px;
 }
 
-/* =========================================
-CONTEÚDO PRINCIPAL
-========================================= */
+header p {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+/* ================================
+   CONTAINER PRINCIPAL
+   ================================ */
 
 main {
-width: 90%;
-max-width: 1100px;
-margin: 30px auto;
-
-```
-display: grid;
-
-grid-template-columns: 1fr 1.5fr;
-
-gap: 25px;
-```
-
+    width: 95%;
+    max-width: 1200px;
+    margin: 30px auto;
 }
 
-/* =========================================
-SEÇÕES
-========================================= */
+/* ================================
+   FORMULÁRIO
+   ================================ */
 
-section {
-background: white;
-
-```
-padding: 25px;
-
-border-radius: 10px;
-
-box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.08);
-```
-
+#formImovel {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
 }
 
-/* =========================================
-TÍTULOS
-========================================= */
-
-h2 {
-margin-bottom: 20px;
-
-```
-color: #1f4e79;
-```
-
+#formImovel h2 {
+    color: #1e3c72;
+    margin-bottom: 20px;
+    font-size: 24px;
 }
 
-/* =========================================
-FORMULÁRIO
-========================================= */
-
-form {
-display: flex;
-flex-direction: column;
+.form-group {
+    margin-bottom: 15px;
 }
 
 label {
-margin-bottom: 6px;
-
-```
-font-weight: bold;
-```
-
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #444;
 }
 
 input,
 select,
 textarea {
-padding: 12px;
-
-```
-margin-bottom: 15px;
-
-border: 1px solid #ccc;
-
-border-radius: 6px;
-
-font-size: 15px;
-
-font-family: Arial, sans-serif;
-```
-
-}
-
-textarea {
-resize: vertical;
-
-```
-min-height: 100px;
-```
-
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 15px;
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-outline: none;
-
-```
-border-color: #1f4e79;
-
-box-shadow:
-    0 0 0 2px rgba(31, 78, 121, 0.1);
-```
-
+    outline: none;
+    border-color: #2a5298;
+    box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.12);
 }
 
-/* =========================================
-BOTÃO PRINCIPAL
-========================================= */
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* ================================
+   BOTÕES
+   ================================ */
 
 button {
-padding: 12px;
-
-```
-border: none;
-
-border-radius: 6px;
-
-background: #1f4e79;
-
-color: white;
-
-font-size: 16px;
-
-cursor: pointer;
-```
-
+    border: none;
+    border-radius: 7px;
+    padding: 11px 18px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
 button:hover {
-opacity: 0.9;
+    transform: translateY(-1px);
+    opacity: 0.92;
 }
 
-/* =========================================
-FOTOS DO FORMULÁRIO
-========================================= */
-
-.ajuda-fotos {
-color: #666;
-
-```
-font-size: 13px;
-
-margin-top: -10px;
-
-margin-bottom: 12px;
-```
-
+button:active {
+    transform: translateY(0);
 }
 
-.preview-fotos {
-display: grid;
-
-```
-grid-template-columns:
-    repeat(auto-fill, minmax(90px, 1fr));
-
-gap: 8px;
-
-margin-bottom: 15px;
-```
-
+#formImovel button[type="submit"] {
+    background: #1e3c72;
+    color: white;
+    margin-top: 5px;
 }
-
-.preview-foto-item {
-position: relative;
-
-```
-height: 90px;
-
-border-radius: 6px;
-
-overflow: hidden;
-
-border: 1px solid #ddd;
-
-background: #f4f6f8;
-```
-
-}
-
-.preview-foto-item img {
-width: 100%;
-
-```
-height: 100%;
-
-object-fit: cover;
-```
-
-}
-
-/* =========================================
-FILTROS
-========================================= */
-
-.filtros {
-display: flex;
-
-```
-gap: 8px;
-
-margin-bottom: 15px;
-```
-
-}
-
-.filtros input {
-flex: 1;
-
-```
-margin-bottom: 0;
-```
-
-}
-
-.filtros select {
-width: 180px;
-
-```
-margin-bottom: 0;
-```
-
-}
-
-/* =========================================
-CARD DO IMÓVEL
-========================================= */
-
-.imovel {
-border: 1px solid #ddd;
-
-```
-border-radius: 8px;
-
-padding: 15px;
-
-margin-bottom: 15px;
-
-background: #fff;
-```
-
-}
-
-.imovel h3 {
-color: #1f4e79;
-
-```
-margin-bottom: 12px;
-
-font-size: 20px;
-```
-
-}
-
-.imovel p {
-margin-bottom: 7px;
-
-```
-line-height: 1.4;
-```
-
-}
-
-.imovel .descricao {
-margin-top: 12px;
-
-```
-padding-top: 10px;
-
-border-top: 1px solid #eee;
-```
-
-}
-
-.imovel .descricao strong {
-display: block;
-
-```
-margin-bottom: 5px;
-```
-
-}
-
-/* =========================================
-GALERIA DO IMÓVEL
-========================================= */
-
-.galeria-imovel {
-display: grid;
-
-```
-grid-template-columns:
-    repeat(auto-fill, minmax(110px, 1fr));
-
-gap: 8px;
-
-margin: 15px 0;
-```
-
-}
-
-.foto-imovel {
-position: relative;
-
-```
-height: 110px;
-
-border-radius: 7px;
-
-overflow: hidden;
-
-border: 1px solid #ddd;
-
-background: #f4f6f8;
-```
-
-}
-
-.foto-imovel img {
-width: 100%;
-
-```
-height: 100%;
-
-object-fit: cover;
-
-cursor: pointer;
-
-transition: transform 0.2s;
-```
-
-}
-
-.foto-imovel img:hover {
-transform: scale(1.05);
-}
-
-/* =========================================
-FOTO PRINCIPAL
-========================================= */
-
-.foto-principal {
-border: 3px solid #1f4e79;
-}
-
-.etiqueta-principal {
-position: absolute;
-
-```
-left: 5px;
-
-bottom: 5px;
-
-background: #1f4e79;
-
-color: white;
-
-padding: 4px 7px;
-
-border-radius: 4px;
-
-font-size: 11px;
-
-font-weight: bold;
-
-z-index: 2;
-```
-
-}
-
-/* =========================================
-BOTÕES DAS FOTOS
-========================================= */
-
-.botoes-foto {
-position: absolute;
-
-```
-top: 5px;
-
-right: 5px;
-
-display: flex;
-
-gap: 4px;
-
-z-index: 3;
-```
-
-}
-
-.btn-foto {
-width: 28px;
-
-```
-height: 28px;
-
-padding: 0;
-
-border-radius: 50%;
-
-font-size: 13px;
-
-display: flex;
-
-align-items: center;
-
-justify-content: center;
-```
-
-}
-
-/* BOTÃO PRINCIPAL */
-
-.btn-principal {
-background: #f39c12;
-}
-
-/* BOTÃO EXCLUIR */
-
-.btn-excluir-foto {
-background: #c0392b;
-}
-
-/* =========================================
-INFORMAÇÕES DO IMÓVEL
-========================================= */
-
-.info-imovel {
-display: flex;
-
-```
-flex-wrap: wrap;
-
-gap: 8px;
-
-margin: 12px 0;
-```
-
-}
-
-.info-item {
-background: #f4f6f8;
-
-```
-padding: 7px 10px;
-
-border-radius: 5px;
-
-font-size: 14px;
-```
-
-}
-
-/* =========================================
-BOTÕES DO IMÓVEL
-========================================= */
-
-.botoes {
-display: flex;
-
-```
-gap: 8px;
-
-margin-top: 12px;
-```
-
-}
-
-.botoes button {
-width: auto;
-
-```
-padding: 10px 14px;
-
-font-size: 14px;
-```
-
-}
-
-/* EDITAR */
 
 .btn-editar {
-background: #1f4e79;
+    background: #f0ad4e;
+    color: white;
 }
-
-/* EXCLUIR */
 
 .btn-excluir {
-background: #c0392b;
+    background: #d9534f;
+    color: white;
 }
 
-/* =========================================
-MODAL DA FOTO
-========================================= */
-
-.modal-foto {
-display: none;
-
-```
-position: fixed;
-
-z-index: 99999;
-
-left: 0;
-
-top: 0;
-
-width: 100%;
-
-height: 100%;
-
-background: rgba(0, 0, 0, 0.90);
-
-align-items: center;
-
-justify-content: center;
-
-padding: 30px;
-```
-
+.btn-cancelar {
+    background: #777;
+    color: white;
 }
 
-/* MODAL ABERTO */
+/* ================================
+   ÁREA DE PESQUISA
+   ================================ */
 
-.modal-foto.ativo {
-display: flex;
+#pesquisa {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
 }
 
-/* FOTO AMPLIADA */
-
-.modal-foto img {
-display: block;
-
-```
-max-width: 90%;
-
-max-height: 85vh;
-
-width: auto;
-
-height: auto;
-
-object-fit: contain;
-
-border-radius: 8px;
-```
-
+#pesquisa h2 {
+    color: #1e3c72;
+    margin-bottom: 12px;
+    font-size: 21px;
 }
 
-/* =========================================
-BOTÃO FECHAR MODAL
-========================================= */
+/* ================================
+   LISTA DE IMÓVEIS
+   ================================ */
 
-.fechar-modal {
-position: fixed;
-
-```
-top: 15px;
-
-left: 20px;
-
-width: 45px;
-
-height: 45px;
-
-padding: 0;
-
-margin: 0;
-
-border: none;
-
-border-radius: 50%;
-
-background: #c0392b;
-
-color: white;
-
-font-size: 28px;
-
-line-height: 45px;
-
-text-align: center;
-
-cursor: pointer;
-
-z-index: 100000;
-```
-
+#listaImoveis {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 22px;
 }
 
-.fechar-modal:hover {
-background: #a93226;
+/* ================================
+   CARD DO IMÓVEL
+   ================================ */
 
-```
-opacity: 1;
-```
-
+.imovel {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* =========================================
-RODAPÉ
-========================================= */
-
-footer {
-text-align: center;
-
-```
-padding: 25px 15px;
-
-color: #666;
-
-font-size: 13px;
-```
-
+.imovel:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
-footer p {
-margin-bottom: 5px;
-}
+/* ================================
+   FOTO PRINCIPAL
+   ================================ */
 
-/* =========================================
-CELULAR
-========================================= */
-
-@media (max-width: 800px) {
-
-```
-main {
-    width: 95%;
-
-    grid-template-columns: 1fr;
-}
-
-.filtros {
-    flex-direction: column;
-}
-
-.filtros select {
+.imovel img {
+    display: block;
     width: 100%;
+    height: 220px;
+    object-fit: cover;
+    cursor: pointer;
+    background: #eee;
+    transition: opacity 0.2s;
 }
 
-.galeria-imovel {
-    grid-template-columns:
-        repeat(
-            auto-fill,
-            minmax(90px, 1fr)
-        );
+.imovel img:hover {
+    opacity: 0.9;
 }
 
-.foto-imovel {
-    height: 90px;
-}
-```
+/* ================================
+   INFORMAÇÕES DO IMÓVEL
+   ================================ */
 
-}
-
-@media (max-width: 500px) {
-
-```
-header {
-    padding: 22px 15px;
-}
-
-header h1 {
-    font-size: 24px;
-}
-
-section {
+.imovel-info {
     padding: 18px;
 }
 
-.botoes {
-    flex-direction: column;
+.imovel h3 {
+    color: #1e3c72;
+    font-size: 21px;
+    margin-bottom: 8px;
 }
 
-.botoes button {
+.imovel p {
+    margin-bottom: 6px;
+    color: #555;
+}
+
+.imovel .preco {
+    color: #16823b;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.imovel .descricao {
+    margin-top: 12px;
+    color: #666;
+    font-size: 14px;
+}
+
+/* ================================
+   GALERIA DE FOTOS
+   ================================ */
+
+.galeria-fotos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 6px;
+    background: #f1f1f1;
+}
+
+.galeria-fotos img {
     width: 100%;
+    height: 95px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.modal-foto {
-    padding: 15px;
+.galeria-fotos img:hover {
+    opacity: 0.85;
 }
 
-.modal-foto img {
-    max-width: 96%;
+/* Quando houver somente uma foto */
+.galeria-fotos img:only-child {
+    height: 220px;
+}
 
-    max-height: 80vh;
+/* ================================
+   BOTÕES DO CARD
+   ================================ */
+
+.imovel-acoes {
+    display: flex;
+    gap: 8px;
+    padding: 0 18px 18px;
+}
+
+.imovel-acoes button {
+    flex: 1;
+}
+
+/* ================================
+   MODAL DA FOTO AMPLIADA
+   ================================ */
+
+#modalFoto {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.88);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#modalFoto img {
+    max-width: 95%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+}
+
+#fecharModal {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: white;
+    font-size: 42px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 10000;
+}
+
+#fecharModal:hover {
+    color: #ddd;
+}
+
+/* ================================
+   MENSAGEM SEM IMÓVEIS
+   ================================ */
+
+.sem-imoveis {
+    grid-column: 1 / -1;
+    background: white;
+    padding: 35px;
+    text-align: center;
+    border-radius: 12px;
+    color: #777;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+}
+
+/* ================================
+   INPUT DE FOTOS
+   ================================ */
+
+input[type="file"] {
+    padding: 9px;
+    cursor: pointer;
+    background: #fafafa;
+}
+
+/* ================================
+   RESPONSIVIDADE
+   ================================ */
+
+@media (max-width: 768px) {
+
+    header {
+        padding: 25px 15px;
+    }
+
+    header h1 {
+        font-size: 26px;
+    }
+
+    main {
+        width: 94%;
+        margin: 20px auto;
+    }
+
+    #formImovel {
+        padding: 20px;
+    }
+
+    #listaImoveis {
+        grid-template-columns: 1fr;
+    }
+
+    .imovel img {
+        height: 230px;
+    }
+
+    .galeria-fotos img {
+        height: 100px;
+    }
+}
+
+/* ================================
+   CELULARES PEQUENOS
+   ================================ */
+
+@media (max-width: 480px) {
+
+    header h1 {
+        font-size: 23px;
+    }
+
+    header p {
+        font-size: 14px;
+    }
+
+    #formImovel,
+    #pesquisa {
+        padding: 16px;
+    }
+
+    .imovel-info {
+        padding: 15px;
+    }
+
+    .imovel-acoes {
+        padding: 0 15px 15px;
+        flex-direction: column;
+    }
+
+    .galeria-fotos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .galeria-fotos img {
+        height: 110px;
+    }
+
+    #modalFoto img {
+        max-width: 100%;
+        max-height: 80vh;
+    }
+
+    #fecharModal {
+        top: 10px;
+        right: 15px;
+        font-size: 36px;
+    }
 }
 ```
-
-}
