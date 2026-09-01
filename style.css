@@ -1,38 +1,36 @@
 ```css
-/* =====================================================
-   IMÓVEIS FÁCIL - STYLE.CSS COMPLETO
-===================================================== */
-
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
+
 
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #f4f6f8;
-    color: #333;
+    color: #222;
     line-height: 1.5;
 }
 
 
-/* =====================================================
+/* ==========================================
    CABEÇALHO
-===================================================== */
+========================================== */
 
 header {
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background: #1e3a5f;
     color: white;
-    text-align: center;
     padding: 30px 20px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    text-align: center;
 }
+
 
 header h1 {
     font-size: 32px;
     margin-bottom: 8px;
 }
+
 
 header p {
     font-size: 16px;
@@ -40,9 +38,9 @@ header p {
 }
 
 
-/* =====================================================
-   CONTAINER PRINCIPAL
-===================================================== */
+/* ==========================================
+   CONTEÚDO
+========================================== */
 
 main {
     width: 95%;
@@ -51,224 +49,213 @@ main {
 }
 
 
-/* =====================================================
-   FORMULÁRIO
-===================================================== */
-
-.formulario {
-    margin-bottom: 30px;
-}
-
-#formImovel {
+.formulario,
+.lista {
     background: white;
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
     margin-bottom: 30px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
 }
 
-.formulario h2,
-.lista h2 {
-    color: #1e3c72;
+
+h2 {
     margin-bottom: 20px;
-    font-size: 24px;
+    color: #1e3a5f;
 }
+
+
+/* ==========================================
+   FORMULÁRIO
+========================================== */
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
 
 label {
-    display: block;
     font-weight: bold;
+    margin-top: 15px;
     margin-bottom: 6px;
-    color: #444;
 }
+
 
 input,
 select,
 textarea {
     width: 100%;
-    padding: 11px 12px;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 7px;
     font-size: 15px;
-    background: #fff;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    margin-bottom: 15px;
+    font-family: inherit;
 }
+
 
 input:focus,
 select:focus,
 textarea:focus {
     outline: none;
-    border-color: #2a5298;
-    box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.12);
+    border-color: #1e3a5f;
 }
 
+
 textarea {
-    min-height: 100px;
     resize: vertical;
 }
 
 
-/* =====================================================
-   INPUT DE FOTOS
-===================================================== */
-
-input[type="file"] {
-    padding: 9px;
-    cursor: pointer;
-    background: #fafafa;
-}
+/* ==========================================
+   FOTOS
+========================================== */
 
 .ajuda-fotos {
     display: block;
-    color: #777;
-    font-size: 13px;
-    margin-top: -8px;
-    margin-bottom: 10px;
+    margin-top: 7px;
+    color: #666;
 }
 
-
-/* =====================================================
-   BOTÕES
-===================================================== */
-
-button {
-    border: none;
-    border-radius: 7px;
-    padding: 11px 18px;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-button:hover {
-    transform: translateY(-1px);
-    opacity: 0.92;
-}
-
-button:active {
-    transform: translateY(0);
-}
-
-#formImovel button[type="submit"] {
-    background: #1e3c72;
-    color: white;
-    margin-top: 5px;
-}
-
-.btn-editar {
-    background: #f0ad4e;
-    color: white;
-}
-
-.btn-excluir {
-    background: #d9534f;
-    color: white;
-}
-
-.btn-cancelar {
-    background: #777;
-    color: white;
-}
-
-
-/* =====================================================
-   PREVIEW DAS FOTOS ANTES DE CADASTRAR
-===================================================== */
 
 .preview-fotos {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-top: 12px;
-    margin-bottom: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 18px;
 }
 
-.preview-foto-item {
+
+.foto-preview-item {
+    background: #f5f5f5;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 8px;
     position: relative;
-    background: #f1f1f1;
-    border: 3px solid transparent;
-    border-radius: 8px;
-    padding: 4px;
-    cursor: pointer;
-    transition: 0.2s;
 }
 
-.preview-foto-item:hover {
-    border-color: #aaa;
+
+.foto-preview-item.foto-principal {
+    border: 3px solid #f0b400;
 }
 
-.preview-foto-item.foto-preview-selecionada {
-    border-color: #1e3c72;
-    box-shadow: 0 0 0 2px rgba(30, 60, 114, 0.15);
-}
 
-.preview-foto {
-    display: block;
-    width: 100% !important;
-    height: 90px !important;
+.foto-preview-item img {
+    width: 100%;
+    height: 150px;
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 7px;
+    cursor: pointer;
+    display: block;
+}
+
+
+.acoes-foto {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+
+.acoes-foto button {
+    flex: 1;
+    border: none;
+    padding: 8px 5px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+.btn-principal {
+    background: #fff3cd;
+    color: #856404;
+}
+
+
+.btn-principal:hover {
+    background: #ffe69c;
+}
+
+
+.btn-excluir-foto {
+    background: #f8d7da;
+    color: #842029;
+}
+
+
+.btn-excluir-foto:hover {
+    background: #f1aeb5;
+}
+
+
+.sem-fotos {
+    color: #777;
+    padding: 10px;
+}
+
+
+/* ==========================================
+   BOTÕES
+========================================== */
+
+.btn-salvar {
+    margin-top: 25px;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #1e3a5f;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
 }
 
-.preview-numero {
-    font-size: 12px;
-    font-weight: bold;
-    color: #444;
-    text-align: center;
-    margin-bottom: 3px;
+
+.btn-salvar:hover {
+    background: #162d4a;
 }
 
-.foto-principal-label {
-    position: absolute;
-    left: 5px;
-    bottom: 5px;
-    background: rgba(30, 60, 114, 0.9);
+
+.btn-cancelar {
+    margin-top: 10px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #777;
     color: white;
-    padding: 3px 6px;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: bold;
-}
-
-.btn-remover-foto {
-    position: absolute;
-    top: 3px;
-    right: 3px;
-    width: 25px;
-    height: 25px;
-    padding: 0;
-    background: #d9534f;
-    color: white;
-    border-radius: 50%;
-    font-size: 12px;
-    z-index: 5;
+    cursor: pointer;
 }
 
 
-/* =====================================================
-   PESQUISA E FILTROS
-===================================================== */
+.btn-cancelar:hover {
+    background: #555;
+}
+
+
+/* ==========================================
+   FILTROS
+========================================== */
 
 .filtros {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 12px;
-    margin-bottom: 25px;
-}
-
-.filtros input,
-.filtros select {
-    background: white;
-    margin-bottom: 0;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
 }
 
 
-/* =====================================================
-   LISTA DE IMÓVEIS
-===================================================== */
+.contador {
+    margin-bottom: 20px;
+    color: #666;
+    font-weight: bold;
+}
+
+
+/* ==========================================
+   LISTA / CARDS
+========================================== */
 
 #listaImoveis {
     display: grid;
@@ -277,393 +264,308 @@ button:active {
 }
 
 
-/* =====================================================
-   CARD DO IMÓVEL
-===================================================== */
-
-.imovel {
+.card-imovel {
     background: white;
+    border: 1px solid #ddd;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.imovel:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
 
-/* =====================================================
-   FOTO PRINCIPAL
-===================================================== */
-
-.foto-principal-container {
-    position: relative;
+.imagem-imovel {
     width: 100%;
-}
-
-.foto-principal {
-    display: block;
-    width: 100% !important;
-    height: 220px !important;
-    object-fit: cover;
-    cursor: pointer;
+    height: 230px;
     background: #eee;
-    transition: opacity 0.2s;
-}
-
-.foto-principal:hover {
-    opacity: 0.9;
-}
-
-.etiqueta-principal {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    background: rgba(0, 0, 0, 0.70);
-    color: white;
-    padding: 5px 9px;
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: bold;
 }
 
 
-/* =====================================================
-   GALERIA DE FOTOS
-===================================================== */
-
-.galeria-fotos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    padding: 6px;
-    background: #f1f1f1;
-}
-
-.miniatura-wrapper {
-    position: relative;
-    border: 3px solid transparent;
-    border-radius: 6px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.miniatura-wrapper:hover {
-    border-color: #aaa;
-    opacity: 0.9;
-}
-
-.miniatura-wrapper.foto-selecionada {
-    border: 3px solid #1e3c72;
-}
-
-.miniatura-foto {
-    display: block;
-    width: 100% !important;
-    height: 95px !important;
+.imagem-principal-card {
+    width: 100%;
+    height: 230px;
     object-fit: cover;
+    display: block;
     cursor: pointer;
 }
 
 
-/* =====================================================
-   INFORMAÇÕES DO IMÓVEL
-===================================================== */
+.sem-imagem {
+    width: 100%;
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+    color: #999;
+}
 
-.imovel-info {
+
+.sem-imagem span {
+    font-size: 15px;
+    margin-top: 8px;
+}
+
+
+.info-imovel {
     padding: 18px;
 }
 
-.imovel h3 {
-    color: #1e3c72;
-    font-size: 21px;
+
+.info-imovel h3 {
+    color: #1e3a5f;
+    font-size: 22px;
     margin-bottom: 8px;
 }
 
-.imovel p {
-    margin-bottom: 6px;
+
+.endereco {
     color: #555;
+    margin-bottom: 10px;
 }
 
-.imovel .preco {
-    color: #16823b;
+
+.preco {
     font-size: 20px;
     font-weight: bold;
-    margin: 10px 0;
+    color: #16803c;
+    margin-bottom: 12px;
 }
 
-.imovel .descricao {
-    margin-top: 12px;
-    color: #666;
+
+.detalhes-imovel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 12px;
+}
+
+
+.detalhes-imovel span {
+    background: #eef2f5;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+
+.descricao {
+    color: #555;
+    margin-bottom: 15px;
+}
+
+
+/* ==========================================
+   MINIATURAS
+========================================== */
+
+.miniaturas {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 5px 0 12px;
+}
+
+
+.miniatura {
+    position: relative;
+    min-width: 65px;
+    width: 65px;
+    height: 65px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+
+.miniatura:hover {
+    border-color: #1e3a5f;
+}
+
+
+.miniatura.miniatura-principal {
+    border-color: #f0b400;
+}
+
+
+.miniatura img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.miniatura span {
+    position: absolute;
+    top: 2px;
+    right: 2px;
     font-size: 14px;
 }
 
 
-/* =====================================================
-   ESTRELAS DE AVALIAÇÃO
-===================================================== */
+/* ==========================================
+   AÇÕES DO IMÓVEL
+========================================== */
 
-.avaliacao {
+.acoes-imovel {
     display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 12px;
-    padding-top: 10px;
-    border-top: 1px solid #eee;
-}
-
-.titulo-avaliacao {
-    font-size: 13px;
-    font-weight: bold;
-    color: #555;
-}
-
-.estrelas {
-    display: flex;
-    gap: 1px;
-}
-
-.estrela {
-    background: transparent;
-    color: #ccc;
-    border: none;
-    padding: 0 2px;
-    margin: 0;
-    font-size: 24px;
-    line-height: 1;
-    cursor: pointer;
-    transform: none !important;
-}
-
-.estrela:hover {
-    color: #f5b301;
-    opacity: 1;
-    transform: scale(1.15) !important;
-}
-
-.estrela.selecionada {
-    color: #f5b301;
-}
-
-.nota-avaliacao {
-    font-size: 12px;
-    color: #777;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 
-/* =====================================================
-   BOTÕES DO CARD
-===================================================== */
-
-.imovel-acoes {
-    display: flex;
-    gap: 8px;
-    padding: 0 18px 18px;
-}
-
-.imovel-acoes button {
+.acoes-imovel button {
     flex: 1;
+    border: none;
+    padding: 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 
-/* =====================================================
-   SEM FOTO
-===================================================== */
-
-.sem-foto {
-    height: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #eee;
-    color: #777;
-    font-size: 18px;
+.btn-editar {
+    background: #dbeafe;
+    color: #1e40af;
 }
 
 
-/* =====================================================
-   SEM IMÓVEIS
-===================================================== */
+.btn-editar:hover {
+    background: #bfdbfe;
+}
 
-.sem-imoveis {
+
+.btn-excluir {
+    background: #f8d7da;
+    color: #842029;
+}
+
+
+.btn-excluir:hover {
+    background: #f1aeb5;
+}
+
+
+/* ==========================================
+   NENHUM IMÓVEL
+========================================== */
+
+.nenhum-imovel {
     grid-column: 1 / -1;
-    background: white;
-    padding: 35px;
     text-align: center;
-    border-radius: 12px;
+    padding: 40px;
     color: #777;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+    border: 2px dashed #ddd;
+    border-radius: 10px;
 }
 
 
-/* =====================================================
-   MODAL DA FOTO AMPLIADA
-===================================================== */
+/* ==========================================
+   MODAL
+========================================== */
 
-#modalFoto {
+.modal-foto {
     display: none;
     position: fixed;
     z-index: 9999;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.88);
-    justify-content: center;
+    background: rgba(0, 0, 0, 0.85);
     align-items: center;
-    padding: 20px;
+    justify-content: center;
+    padding: 30px;
 }
 
-#modalFoto img {
-    max-width: 95%;
+
+.modal-foto img {
+    max-width: 90%;
     max-height: 90vh;
     object-fit: contain;
     border-radius: 8px;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
 }
 
-#fecharModal {
+
+.fechar-modal {
     position: absolute;
-    top: 15px;
+    top: 20px;
     right: 25px;
-    color: white;
-    background: transparent;
-    font-size: 42px;
-    font-weight: bold;
+    border: none;
+    background: white;
+    color: #222;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 22px;
     cursor: pointer;
-    line-height: 1;
-    z-index: 10000;
-    padding: 5px;
-}
-
-#fecharModal:hover {
-    color: #ddd;
-    transform: none;
 }
 
 
-/* =====================================================
+.fechar-modal:hover {
+    background: #eee;
+}
+
+
+/* ==========================================
    RODAPÉ
-===================================================== */
+========================================== */
 
 footer {
-    background: #1e3c72;
+    background: #1e3a5f;
     color: white;
     text-align: center;
-    padding: 20px;
+    padding: 25px 15px;
     margin-top: 40px;
-    font-size: 13px;
 }
+
 
 footer p {
-    margin: 4px 0;
+    margin: 4px;
+    font-size: 14px;
 }
 
 
-/* =====================================================
-   RESPONSIVIDADE - TABLET
-===================================================== */
+/* ==========================================
+   CELULAR
+========================================== */
 
-@media (max-width: 768px) {
-
-    header {
-        padding: 25px 15px;
-    }
+@media (max-width: 700px) {
 
     header h1 {
         font-size: 26px;
     }
+
 
     main {
         width: 94%;
         margin: 20px auto;
     }
 
-    #formImovel {
-        padding: 20px;
+
+    .formulario,
+    .lista {
+        padding: 18px;
     }
+
+
+    .filtros {
+        grid-template-columns: 1fr;
+    }
+
 
     #listaImoveis {
         grid-template-columns: 1fr;
     }
 
-    .foto-principal {
-        height: 230px !important;
-    }
-
-    .preview-fotos {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .miniatura-foto {
-        height: 95px !important;
-    }
-
-    .filtros {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-/* =====================================================
-   RESPONSIVIDADE - CELULAR
-===================================================== */
-
-@media (max-width: 480px) {
-
-    header h1 {
-        font-size: 23px;
-    }
-
-    header p {
-        font-size: 14px;
-    }
-
-    #formImovel {
-        padding: 16px;
-    }
-
-    .imovel-info {
-        padding: 15px;
-    }
-
-    .imovel-acoes {
-        padding: 0 15px 15px;
-        flex-direction: column;
-    }
-
-    .galeria-fotos {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .miniatura-foto {
-        height: 80px !important;
-    }
 
     .preview-fotos {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .preview-foto {
-        height: 90px !important;
+
+    .imagem-imovel,
+    .imagem-principal-card {
+        height: 210px;
     }
 
-    #modalFoto img {
-        max-width: 100%;
-        max-height: 80vh;
-    }
-
-    #fecharModal {
-        top: 10px;
-        right: 15px;
-        font-size: 36px;
-    }
-
-    .avaliacao {
-        flex-wrap: wrap;
-    }
 }
 ```
