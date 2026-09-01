@@ -1,4 +1,4 @@
-```javascript
+javascript
 // ======================================================
 // IMÓVEIS FÁCIL
 // SCRIPT COMPLETO
@@ -1818,4 +1818,3 @@ document.addEventListener(
 
     }
 );
-```
