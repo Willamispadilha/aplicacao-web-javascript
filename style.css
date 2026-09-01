@@ -1,7 +1,7 @@
 ```css
-/* ================================
-   IMÓVEIS FÁCIL - STYLE.CSS
-   ================================ */
+/* =====================================================
+   IMÓVEIS FÁCIL - STYLE.CSS COMPLETO
+===================================================== */
 
 * {
     margin: 0;
@@ -16,9 +16,10 @@ body {
     line-height: 1.5;
 }
 
-/* ================================
+
+/* =====================================================
    CABEÇALHO
-   ================================ */
+===================================================== */
 
 header {
     background: linear-gradient(135deg, #1e3c72, #2a5298);
@@ -38,9 +39,10 @@ header p {
     opacity: 0.9;
 }
 
-/* ================================
+
+/* =====================================================
    CONTAINER PRINCIPAL
-   ================================ */
+===================================================== */
 
 main {
     width: 95%;
@@ -48,9 +50,14 @@ main {
     margin: 30px auto;
 }
 
-/* ================================
+
+/* =====================================================
    FORMULÁRIO
-   ================================ */
+===================================================== */
+
+.formulario {
+    margin-bottom: 30px;
+}
 
 #formImovel {
     background: white;
@@ -60,14 +67,11 @@ main {
     margin-bottom: 30px;
 }
 
-#formImovel h2 {
+.formulario h2,
+.lista h2 {
     color: #1e3c72;
     margin-bottom: 20px;
     font-size: 24px;
-}
-
-.form-group {
-    margin-bottom: 15px;
 }
 
 label {
@@ -87,6 +91,7 @@ textarea {
     font-size: 15px;
     background: #fff;
     transition: border-color 0.2s, box-shadow 0.2s;
+    margin-bottom: 15px;
 }
 
 input:focus,
@@ -102,9 +107,29 @@ textarea {
     resize: vertical;
 }
 
-/* ================================
+
+/* =====================================================
+   INPUT DE FOTOS
+===================================================== */
+
+input[type="file"] {
+    padding: 9px;
+    cursor: pointer;
+    background: #fafafa;
+}
+
+.ajuda-fotos {
+    display: block;
+    color: #777;
+    font-size: 13px;
+    margin-top: -8px;
+    margin-bottom: 10px;
+}
+
+
+/* =====================================================
    BOTÕES
-   ================================ */
+===================================================== */
 
 button {
     border: none;
@@ -146,27 +171,104 @@ button:active {
     color: white;
 }
 
-/* ================================
-   ÁREA DE PESQUISA
-   ================================ */
 
-#pesquisa {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+/* =====================================================
+   PREVIEW DAS FOTOS ANTES DE CADASTRAR
+===================================================== */
+
+.preview-fotos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 12px;
+    margin-bottom: 15px;
+}
+
+.preview-foto-item {
+    position: relative;
+    background: #f1f1f1;
+    border: 3px solid transparent;
+    border-radius: 8px;
+    padding: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.preview-foto-item:hover {
+    border-color: #aaa;
+}
+
+.preview-foto-item.foto-preview-selecionada {
+    border-color: #1e3c72;
+    box-shadow: 0 0 0 2px rgba(30, 60, 114, 0.15);
+}
+
+.preview-foto {
+    display: block;
+    width: 100% !important;
+    height: 90px !important;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.preview-numero {
+    font-size: 12px;
+    font-weight: bold;
+    color: #444;
+    text-align: center;
+    margin-bottom: 3px;
+}
+
+.foto-principal-label {
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    background: rgba(30, 60, 114, 0.9);
+    color: white;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.btn-remover-foto {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    background: #d9534f;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    z-index: 5;
+}
+
+
+/* =====================================================
+   PESQUISA E FILTROS
+===================================================== */
+
+.filtros {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 12px;
     margin-bottom: 25px;
 }
 
-#pesquisa h2 {
-    color: #1e3c72;
-    margin-bottom: 12px;
-    font-size: 21px;
+.filtros input,
+.filtros select {
+    background: white;
+    margin-bottom: 0;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* ================================
+
+/* =====================================================
    LISTA DE IMÓVEIS
-   ================================ */
+===================================================== */
 
 #listaImoveis {
     display: grid;
@@ -174,9 +276,10 @@ button:active {
     gap: 22px;
 }
 
-/* ================================
+
+/* =====================================================
    CARD DO IMÓVEL
-   ================================ */
+===================================================== */
 
 .imovel {
     background: white;
@@ -191,27 +294,85 @@ button:active {
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
-/* ================================
-   FOTO PRINCIPAL
-   ================================ */
 
-.imovel img {
-    display: block;
+/* =====================================================
+   FOTO PRINCIPAL
+===================================================== */
+
+.foto-principal-container {
+    position: relative;
     width: 100%;
-    height: 220px;
+}
+
+.foto-principal {
+    display: block;
+    width: 100% !important;
+    height: 220px !important;
     object-fit: cover;
     cursor: pointer;
     background: #eee;
     transition: opacity 0.2s;
 }
 
-.imovel img:hover {
+.foto-principal:hover {
     opacity: 0.9;
 }
 
-/* ================================
+.etiqueta-principal {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.70);
+    color: white;
+    padding: 5px 9px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   GALERIA DE FOTOS
+===================================================== */
+
+.galeria-fotos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 6px;
+    background: #f1f1f1;
+}
+
+.miniatura-wrapper {
+    position: relative;
+    border: 3px solid transparent;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.miniatura-wrapper:hover {
+    border-color: #aaa;
+    opacity: 0.9;
+}
+
+.miniatura-wrapper.foto-selecionada {
+    border: 3px solid #1e3c72;
+}
+
+.miniatura-foto {
+    display: block;
+    width: 100% !important;
+    height: 95px !important;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+
+/* =====================================================
    INFORMAÇÕES DO IMÓVEL
-   ================================ */
+===================================================== */
 
 .imovel-info {
     padding: 18px;
@@ -241,38 +402,62 @@ button:active {
     font-size: 14px;
 }
 
-/* ================================
-   GALERIA DE FOTOS
-   ================================ */
 
-.galeria-fotos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+/* =====================================================
+   ESTRELAS DE AVALIAÇÃO
+===================================================== */
+
+.avaliacao {
+    display: flex;
+    align-items: center;
     gap: 6px;
-    padding: 6px;
-    background: #f1f1f1;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
 }
 
-.galeria-fotos img {
-    width: 100%;
-    height: 95px;
-    object-fit: cover;
-    border-radius: 5px;
+.titulo-avaliacao {
+    font-size: 13px;
+    font-weight: bold;
+    color: #555;
+}
+
+.estrelas {
+    display: flex;
+    gap: 1px;
+}
+
+.estrela {
+    background: transparent;
+    color: #ccc;
+    border: none;
+    padding: 0 2px;
+    margin: 0;
+    font-size: 24px;
+    line-height: 1;
     cursor: pointer;
+    transform: none !important;
 }
 
-.galeria-fotos img:hover {
-    opacity: 0.85;
+.estrela:hover {
+    color: #f5b301;
+    opacity: 1;
+    transform: scale(1.15) !important;
 }
 
-/* Quando houver somente uma foto */
-.galeria-fotos img:only-child {
-    height: 220px;
+.estrela.selecionada {
+    color: #f5b301;
 }
 
-/* ================================
+.nota-avaliacao {
+    font-size: 12px;
+    color: #777;
+}
+
+
+/* =====================================================
    BOTÕES DO CARD
-   ================================ */
+===================================================== */
 
 .imovel-acoes {
     display: flex;
@@ -284,9 +469,40 @@ button:active {
     flex: 1;
 }
 
-/* ================================
+
+/* =====================================================
+   SEM FOTO
+===================================================== */
+
+.sem-foto {
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eee;
+    color: #777;
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   SEM IMÓVEIS
+===================================================== */
+
+.sem-imoveis {
+    grid-column: 1 / -1;
+    background: white;
+    padding: 35px;
+    text-align: center;
+    border-radius: 12px;
+    color: #777;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+}
+
+
+/* =====================================================
    MODAL DA FOTO AMPLIADA
-   ================================ */
+===================================================== */
 
 #modalFoto {
     display: none;
@@ -314,44 +530,42 @@ button:active {
     top: 15px;
     right: 25px;
     color: white;
+    background: transparent;
     font-size: 42px;
     font-weight: bold;
     cursor: pointer;
     line-height: 1;
     z-index: 10000;
+    padding: 5px;
 }
 
 #fecharModal:hover {
     color: #ddd;
+    transform: none;
 }
 
-/* ================================
-   MENSAGEM SEM IMÓVEIS
-   ================================ */
 
-.sem-imoveis {
-    grid-column: 1 / -1;
-    background: white;
-    padding: 35px;
+/* =====================================================
+   RODAPÉ
+===================================================== */
+
+footer {
+    background: #1e3c72;
+    color: white;
     text-align: center;
-    border-radius: 12px;
-    color: #777;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 13px;
 }
 
-/* ================================
-   INPUT DE FOTOS
-   ================================ */
-
-input[type="file"] {
-    padding: 9px;
-    cursor: pointer;
-    background: #fafafa;
+footer p {
+    margin: 4px 0;
 }
 
-/* ================================
-   RESPONSIVIDADE
-   ================================ */
+
+/* =====================================================
+   RESPONSIVIDADE - TABLET
+===================================================== */
 
 @media (max-width: 768px) {
 
@@ -376,18 +590,27 @@ input[type="file"] {
         grid-template-columns: 1fr;
     }
 
-    .imovel img {
-        height: 230px;
+    .foto-principal {
+        height: 230px !important;
     }
 
-    .galeria-fotos img {
-        height: 100px;
+    .preview-fotos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .miniatura-foto {
+        height: 95px !important;
+    }
+
+    .filtros {
+        grid-template-columns: 1fr;
     }
 }
 
-/* ================================
-   CELULARES PEQUENOS
-   ================================ */
+
+/* =====================================================
+   RESPONSIVIDADE - CELULAR
+===================================================== */
 
 @media (max-width: 480px) {
 
@@ -399,8 +622,7 @@ input[type="file"] {
         font-size: 14px;
     }
 
-    #formImovel,
-    #pesquisa {
+    #formImovel {
         padding: 16px;
     }
 
@@ -414,11 +636,19 @@ input[type="file"] {
     }
 
     .galeria-fotos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .miniatura-foto {
+        height: 80px !important;
+    }
+
+    .preview-fotos {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .galeria-fotos img {
-        height: 110px;
+    .preview-foto {
+        height: 90px !important;
     }
 
     #modalFoto img {
@@ -430,6 +660,10 @@ input[type="file"] {
         top: 10px;
         right: 15px;
         font-size: 36px;
+    }
+
+    .avaliacao {
+        flex-wrap: wrap;
     }
 }
 ```
